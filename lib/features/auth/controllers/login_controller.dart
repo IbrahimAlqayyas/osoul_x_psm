@@ -8,6 +8,7 @@ import 'package:osoul_x_psm/core/preferences/preferences.dart';
 
 import 'package:osoul_x_psm/core/shared_widgets/snackbar.dart';
 import 'package:osoul_x_psm/features/auth/models/user_model.dart';
+import 'package:osoul_x_psm/features/home/views/home_view.dart';
 // import 'package:osoul_x_psm/features/home/views/home_view.dart';
 import 'package:osoul_x_psm/features/profile/views/change_password_view.dart';
 
@@ -40,7 +41,6 @@ class LoginController extends GetxController {
 
   obscureControl() {
     isObscure = !isObscure;
-
     update();
   }
 
@@ -58,17 +58,17 @@ class LoginController extends GetxController {
           () => ChangePasswordView(
             email: user.email,
             onPasswordReset: () async {
-              // await Preferences().saveUser(user);
-              // await saveEnvironment(kAppEnvironment!);
-              // Get.offAll(() => HomeView());
+              await Preferences().saveUser(user);
+              await saveEnvironment(kAppEnvironment!);
+              Get.offAll(() => HomeView());
             },
           ),
         );
         showSnackBar(haveToChangePassword.tr, type: SnackBarType.warning);
       } else {
-        // await Preferences().saveUser(user);
-        // await saveEnvironment(kAppEnvironment!);
-        // Get.offAll(() => HomeView());
+        await Preferences().saveUser(user);
+        await saveEnvironment(kAppEnvironment!);
+        Get.offAll(() => HomeView());
       }
     } else {
       showSnackBar(loginError.tr, type: SnackBarType.failure);

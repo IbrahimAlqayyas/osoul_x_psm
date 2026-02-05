@@ -169,8 +169,8 @@ class DialogWidget extends StatelessWidget {
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Container(
-        height: height?.toDouble() ?? 300,
-        width: width?.toDouble(),
+        height: height?.toDouble() ?? Get.width - 50,
+        width: width?.toDouble() ?? Get.width - 50,
         decoration: BoxDecoration(
           color: kWhiteColor,
           borderRadius: BorderRadius.circular(20),

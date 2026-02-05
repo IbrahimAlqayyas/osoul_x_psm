@@ -4,7 +4,7 @@ import 'package:osoul_x_psm/core/constants/ui_constants.dart';
 import 'package:osoul_x_psm/core/localization/03_supported_locales.dart';
 import 'package:osoul_x_psm/core/theme/colors.dart';
 import 'package:osoul_x_psm/core/theme/text_styles.dart';
-// import 'package:osoul_x_psm/features/home/views/drawer.dart';
+import 'package:osoul_x_psm/features/home/views/drawer.dart';
 import 'package:osoul_x_psm/main.dart';
 
 class BaseScaffold extends StatelessWidget {
@@ -42,7 +42,7 @@ class BaseScaffold extends StatelessWidget {
       extendBody: true,
       backgroundColor: const Color(0xFFF7F7F7),
       bottomNavigationBar: bottomNavigationBar,
-      // drawer: isDrawerButton ? Drawer(child: DrawerView()) : null,
+      drawer: isDrawerButton ? Drawer(child: DrawerView()) : null,
       body: Column(
         children: [
           /// Header with back arrow and title

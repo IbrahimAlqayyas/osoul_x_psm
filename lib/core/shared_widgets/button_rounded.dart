@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:osoul_x_psm/core/localization/01_translation_keys.dart';
+import 'package:osoul_x_psm/core/shared_widgets/padding.dart';
 import 'package:osoul_x_psm/core/theme/colors.dart';
 
 class MyRoundedButton extends StatelessWidget {
@@ -93,6 +96,133 @@ class MyCircularButton extends StatelessWidget {
           shape: BoxShape.circle,
         ),
         child: Center(child: child),
+      ),
+    );
+  }
+}
+
+class MySmallButton extends StatelessWidget {
+  const MySmallButton({
+    super.key,
+    required this.isSelected,
+    this.onTap,
+    this.title,
+    this.internalPadding,
+    this.isSecondary = false,
+    this.secondaryColor = kPrimaryColor,
+    this.isEnabled = true,
+  });
+  final bool isSelected;
+  final VoidCallback? onTap;
+  final String? title;
+  final EdgeInsets? internalPadding;
+  final bool isSecondary;
+  final Color? secondaryColor;
+  final bool isEnabled;
+
+  @override
+  Widget build(BuildContext context) {
+    return
+    // Add/Remove Button
+    GestureDetector(
+      onTap: isEnabled ? onTap : null,
+      child: Container(
+        padding: internalPadding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          color: !isEnabled
+              ? kMutedTextColor.withAlpha(opacityToAlpha(0.1))
+              : (isSecondary ? kWhiteColor : null),
+          gradient: !isEnabled
+              ? null
+              : (isSecondary
+                    ? null
+                    : (isSelected
+                          ? LinearGradient(
+                              colors: [kRedColor, kRedColor.withAlpha(opacityToAlpha(0.8))],
+                            )
+                          : kMainGradient)),
+          borderRadius: BorderRadius.circular(10),
+          border: !isEnabled
+              ? Border.all(color: kMutedTextColor.withAlpha(opacityToAlpha(0.3)), width: 1)
+              : (isSecondary ? Border.all(color: secondaryColor!, width: 1) : null),
+          boxShadow: !isEnabled
+              ? []
+              : [
+                  BoxShadow(
+                    color: isSecondary
+                        ? secondaryColor!.withAlpha(opacityToAlpha(0.1))
+                        : (isSelected ? kRedColor : kPrimaryColor).withAlpha(opacityToAlpha(0.3)),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (title == null) ...[
+              Icon(
+                isSelected ? Icons.delete_outline : Icons.add,
+                color: !isEnabled
+                    ? kMutedTextColor.withAlpha(opacityToAlpha(0.5))
+                    : (isSecondary ? secondaryColor : kWhiteColor),
+                size: 18,
+              ),
+              const SizedBox(width: 4),
+            ],
+            Text(
+              title ?? (isSelected ? remove.tr : add.tr),
+              style: TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+                color: !isEnabled
+                    ? kMutedTextColor.withAlpha(opacityToAlpha(0.5))
+                    : (isSecondary ? secondaryColor : kWhiteColor),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MyCategoryButton extends StatelessWidget {
+  const MyCategoryButton({
+    super.key,
+    required this.onTap,
+    required this.assetPath,
+    required this.title,
+    this.borderColor,
+  });
+
+  final VoidCallback onTap;
+  final String assetPath;
+  final String title;
+  final Color? borderColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        // width: 120,
+        // height: 120,
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: kWhiteColor,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: borderColor ?? kPrimaryColor.withAlpha(opacityToAlpha(1)),
+            width: 1,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [Image.asset(assetPath, height: 35), const VPadding(6), Text(title)],
+          ),
+        ),
       ),
     );
   }
