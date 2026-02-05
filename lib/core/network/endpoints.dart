@@ -1,5 +1,6 @@
 import 'package:osoul_x_psm/core/app/environment.dart';
 import 'package:osoul_x_psm/core/network/api_utils.dart';
+import 'package:osoul_x_psm/features/home/controllers/home_controller.dart';
 // import 'package:osoul_x_psm/features/home/controllers/home_controller.dart';
 
 class Endpoints {
@@ -47,10 +48,10 @@ class Endpoints {
   //   return Uri.parse('${apiUtils.getBaseURL()}$scriptId&internalid=$internalId');
   // }
 
-  // Uri itemsBrandsUri(bool isFrozen) {
-  //   final scriptId = _isStaging ? '1896' : '2028';
-  //   return Uri.parse('${apiUtils.getBaseURL()}$scriptId&driverid=$kDriverId&isfrozen=$isFrozen');
-  // }
+  Uri itemsBrandsUri(bool isFrozen) {
+    final scriptId = _isStaging ? '1896' : '2028';
+    return Uri.parse('${apiUtils.getBaseURL()}$scriptId&driverid=$kDriverId&isfrozen=$isFrozen');
+  }
 
   // Uri receiptOrderListerUri() {
   //   final scriptId = _isStaging ? '1889' : '2026';
@@ -65,12 +66,12 @@ class Endpoints {
   //   return Uri.parse('${apiUtils.getBaseURL()}$scriptId');
   // }
 
-  // Uri itemsLotsUri(String? filterText) {
-  //   final scriptId = _isStaging ? '1894' : '2029';
-  //   return Uri.parse(
-  //     '${apiUtils.getBaseURL()}$scriptId&filtertext=$filterText&driverid=$kDriverId',
-  //   );
-  // }
+  Uri itemsLotsUri(String? filterText) {
+    final scriptId = _isStaging ? '1894' : '2029';
+    return Uri.parse(
+      '${apiUtils.getBaseURL()}$scriptId&filtertext=$filterText&driverid=$kDriverId',
+    );
+  }
 
   // Uri vanItemsListUri() {
   //   final scriptId = _isStaging ? '1895' : '2016';

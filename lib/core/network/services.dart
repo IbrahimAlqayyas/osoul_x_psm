@@ -3,6 +3,7 @@ import 'package:osoul_x_psm/core/network/api_client.dart';
 import 'package:osoul_x_psm/core/network/api_utils.dart';
 import 'package:osoul_x_psm/core/network/endpoints.dart';
 import 'package:osoul_x_psm/features/auth/models/user_model.dart';
+import 'package:osoul_x_psm/features/products/models/product_model.dart';
 // import 'package:osoul_x_psm/features/collect/models/collect_orders_model.dart';
 // import 'package:osoul_x_psm/features/returns/models/return_listing_item.dart';
 // import 'package:osoul_x_psm/features/sales/models/customers_model.dart';
@@ -166,25 +167,25 @@ class Services {
   //   return returnValue;
   // }
 
-  // Future<List<ItemToAddInTransferOrderModel>?> getItemsToAddInTransferOrder(bool isFrozen) async {
-  //   List<ItemToAddInTransferOrderModel>? returnValue;
-  //   await ApiClient().request(
-  //     serviceName: 'get Items To Add In Transfer Order',
-  //     requestType: RequestType.get,
-  //     uri: Endpoints().itemsBrandsUri(isFrozen),
-  //     printCurl: true,
-  //     headers: ApiUtils().headers(url: Endpoints().itemsBrandsUri(isFrozen), method: 'GET'),
-  //     onSuccess: (list) {
-  //       List<ItemToAddInTransferOrderModel> items = [];
-  //       for (var item in list) {
-  //         items.add(ItemToAddInTransferOrderModel.fromJson(item));
-  //       }
-  //       returnValue = items;
-  //     },
-  //   );
+  Future<List<ItemToAddInTransferOrderModel>?> getItemsToAddInTransferOrder(bool isFrozen) async {
+    List<ItemToAddInTransferOrderModel>? returnValue;
+    await ApiClient().request(
+      serviceName: 'get Items To Add In Transfer Order',
+      requestType: RequestType.get,
+      uri: Endpoints().itemsBrandsUri(isFrozen),
+      printCurl: true,
+      headers: ApiUtils().headers(url: Endpoints().itemsBrandsUri(isFrozen), method: 'GET'),
+      onSuccess: (list) {
+        List<ItemToAddInTransferOrderModel> items = [];
+        for (var item in list) {
+          items.add(ItemToAddInTransferOrderModel.fromJson(item));
+        }
+        returnValue = items;
+      },
+    );
 
-  //   return returnValue;
-  // }
+    return returnValue;
+  }
 
   // Future<bool> createTransferOrder(Map<String, dynamic> body) async {
   //   bool returnValue = false;

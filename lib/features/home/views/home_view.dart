@@ -11,6 +11,7 @@ import 'package:osoul_x_psm/core/theme/colors.dart';
 // import 'package:osoul_x_psm/features/collect/views/collect_view.dart';
 import 'package:osoul_x_psm/features/home/controllers/home_controller.dart';
 import 'package:osoul_x_psm/features/home/models/work_order_model.dart';
+import 'package:osoul_x_psm/features/products/views/select_products_view.dart';
 import 'package:osoul_x_psm/main.dart';
 // import 'package:osoul_x_psm/features/returns/views/return_view.dart';
 // import 'package:osoul_x_psm/features/transfer_orders/views/transfer_orders_view.dart';
@@ -78,7 +79,12 @@ class HomeView extends StatelessWidget {
                                                 // controller.isFrozen = false;
                                                 // kLog(controller.isFrozen);
                                                 // controller.getItemsToAddInTransferOrder();
-                                                // Get.to(() => AddEditTransferOrderView(isEdit: true));
+                                                Get.to(
+                                                  () => AddEditTransferOrderView(
+                                                    filterText: 'Chickens',
+                                                    workOrder: controller.workOrders[index],
+                                                  ),
+                                                );
                                               },
                                               assetPath: 'assets/icons/chicken.png',
                                               title: 'Chickens',
@@ -93,9 +99,12 @@ class HomeView extends StatelessWidget {
                                                 // controller.isFrozen = true;
                                                 // kLog(controller.isFrozen);
                                                 // controller.getItemsToAddInTransferOrder();
-                                                // Get.to(
-                                                //   () => AddEditTransferOrderView(isEdit: true),
-                                                // );
+                                                Get.to(
+                                                  () => AddEditTransferOrderView(
+                                                    filterText: 'Portions',
+                                                    workOrder: controller.workOrders[index],
+                                                  ),
+                                                );
                                               },
                                               assetPath: 'assets/icons/portions2.png',
                                               title: 'Portions',
@@ -114,7 +123,12 @@ class HomeView extends StatelessWidget {
                                                 // controller.isFrozen = false;
                                                 // kLog(controller.isFrozen);
                                                 // controller.getItemsToAddInTransferOrder();
-                                                // Get.to(() => AddEditTransferOrderView(isEdit: true));
+                                                Get.to(
+                                                  () => AddEditTransferOrderView(
+                                                    filterText: 'Co-by',
+                                                    workOrder: controller.workOrders[index],
+                                                  ),
+                                                );
                                               },
                                               assetPath: 'assets/icons/coby.png',
                                               title: 'Co-by',
@@ -129,9 +143,12 @@ class HomeView extends StatelessWidget {
                                                 // controller.isFrozen = true;
                                                 // kLog(controller.isFrozen);
                                                 // controller.getItemsToAddInTransferOrder();
-                                                // Get.to(
-                                                //   () => AddEditTransferOrderView(isEdit: true),
-                                                // );
+                                                Get.to(
+                                                  () => AddEditTransferOrderView(
+                                                    filterText: 'Marinated',
+                                                    workOrder: controller.workOrders[index],
+                                                  ),
+                                                );
                                               },
                                               assetPath: 'assets/icons/marinated.png',
                                               title: 'Marinated',
