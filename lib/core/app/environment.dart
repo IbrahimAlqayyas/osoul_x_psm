@@ -7,8 +7,8 @@ AppEnvironment? kAppEnvironment;
 // Initialize environment from saved preferences or default to staging
 Future<void> initializeEnvironment() async {
   /// manual set of environment
-  // kAppEnvironment = Staging();
-  kAppEnvironment = Production();
+  kAppEnvironment = Staging();
+  // kAppEnvironment = Production();
   final String? savedEnv = await Preferences().getString(PrefsKeys().savedEnvironment);
   kLog('kAppEnvironment?.environment != savedEnv => ${kAppEnvironment?.environment != savedEnv}');
   if (kAppEnvironment?.environment != savedEnv) {

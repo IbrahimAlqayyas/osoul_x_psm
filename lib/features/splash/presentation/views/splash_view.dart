@@ -5,9 +5,7 @@ import 'package:osoul_x_psm/core/logging/logging.dart';
 import 'package:osoul_x_psm/core/preferences/preferences.dart';
 import 'package:osoul_x_psm/core/shared_widgets/logo.dart';
 import 'package:osoul_x_psm/core/theme/colors.dart';
-// import 'package:osoul_x_psm/features/auth/models/user_model.dart';
-// import 'package:osoul_x_van/features/auth/views/login_view.dart';
-// import 'package:osoul_x_van/features/home/views/home_view.dart';
+import 'package:osoul_x_psm/features/auth/views/login_view.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -34,6 +32,8 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
     //   /// no saved login data
     //   Future.delayed(const Duration(seconds: 5), () => Get.to(() => LoginView()));
     // }
+
+    Future.delayed(const Duration(seconds: 5), () => Get.to(() => LoginView()));
   }
 
   @override
