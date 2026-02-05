@@ -76,41 +76,41 @@ class DrawerView extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 24),
-                        _buildSection(
-                          title: operationsTitle.tr,
-                          items: [
-                            _buildActionItem(
-                              icon: Icons.local_shipping_outlined,
-                              title: transferOrdersTitle.tr,
-                              onTap: () {
-                                // Get.to(() => const ProfileNewView());
-                              },
-                            ),
-                            _buildActionItem(
-                              icon: Icons.shopping_cart_outlined,
-                              title: salesTitle.tr,
-                              onTap: () {
-                                // Get.to(() => const ProfileNewView());
-                              },
-                            ),
-                            _buildActionItem(
-                              icon: Icons.assignment_return_outlined,
-                              title: inventoryTitle.tr,
-                              onTap: () {
-                                // Get.to(() => const ProfileNewView());
-                              },
-                            ),
-                            _buildActionItem(
-                              icon: Icons.receipt_long_outlined,
-                              title: returnsTitle.tr,
-                              onTap: () {
-                                // Get.to(() => const ReturnCreatedOrdersView());
-                              },
-                            ),
-                          ],
-                        ),
 
+                        // const SizedBox(height: 24),
+                        // _buildSection(
+                        //   title: operationsTitle.tr,
+                        //   items: [
+                        //     _buildActionItem(
+                        //       icon: Icons.local_shipping_outlined,
+                        //       title: transferOrdersTitle.tr,
+                        //       onTap: () {
+                        //         // Get.to(() => const ProfileNewView());
+                        //       },
+                        //     ),
+                        //     _buildActionItem(
+                        //       icon: Icons.shopping_cart_outlined,
+                        //       title: salesTitle.tr,
+                        //       onTap: () {
+                        //         // Get.to(() => const ProfileNewView());
+                        //       },
+                        //     ),
+                        //     _buildActionItem(
+                        //       icon: Icons.assignment_return_outlined,
+                        //       title: inventoryTitle.tr,
+                        //       onTap: () {
+                        //         // Get.to(() => const ProfileNewView());
+                        //       },
+                        //     ),
+                        //     _buildActionItem(
+                        //       icon: Icons.receipt_long_outlined,
+                        //       title: returnsTitle.tr,
+                        //       onTap: () {
+                        //         // Get.to(() => const ReturnCreatedOrdersView());
+                        //       },
+                        //     ),
+                        //   ],
+                        // ),
                         const SizedBox(height: 24),
 
                         // About Section
