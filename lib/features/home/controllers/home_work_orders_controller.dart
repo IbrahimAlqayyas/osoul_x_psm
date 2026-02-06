@@ -6,7 +6,7 @@ import 'package:osoul_x_psm/features/home/models/work_order_model.dart';
 
 String? kDriverId;
 
-class HomeController extends GetxController {
+class HomeWorkOrdersController extends GetxController {
   UserModel? user;
   bool isDrawerOpen = false;
 

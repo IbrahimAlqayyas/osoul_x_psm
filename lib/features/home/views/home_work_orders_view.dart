@@ -9,7 +9,7 @@ import 'package:osoul_x_psm/core/shared_widgets/padding.dart';
 import 'package:osoul_x_psm/core/shared_widgets/popups_dialogs.dart';
 import 'package:osoul_x_psm/core/theme/colors.dart';
 // import 'package:osoul_x_psm/features/collect/views/collect_view.dart';
-import 'package:osoul_x_psm/features/home/controllers/home_controller.dart';
+import 'package:osoul_x_psm/features/home/controllers/home_work_orders_controller.dart';
 import 'package:osoul_x_psm/features/home/models/work_order_model.dart';
 import 'package:osoul_x_psm/features/products/views/select_products_view.dart';
 import 'package:osoul_x_psm/main.dart';
@@ -23,8 +23,8 @@ class HomeViewWorkOrders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeController>(
-      init: HomeController(),
+    return GetBuilder<HomeWorkOrdersController>(
+      init: HomeWorkOrdersController(),
       builder: (controller) {
         return BaseScaffold(
           // appBarHeight: 130,
@@ -51,7 +51,7 @@ class HomeViewWorkOrders extends StatelessWidget {
                         onTap: () {
                           showMyDialog(
                             GetBuilder(
-                              init: HomeController(),
+                              init: HomeWorkOrdersController(),
                               // init: AddEditTransferOrderController(),
                               builder: (controller) {
                                 // bool hasFrozenItems =

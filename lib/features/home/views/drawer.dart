@@ -7,7 +7,7 @@ import 'package:osoul_x_psm/core/shared_widgets/padding.dart';
 import 'package:osoul_x_psm/core/shared_widgets/popups_dialogs.dart';
 import 'package:osoul_x_psm/core/theme/colors.dart';
 import 'package:osoul_x_psm/features/auth/views/login_view.dart';
-import 'package:osoul_x_psm/features/home/controllers/home_controller.dart';
+import 'package:osoul_x_psm/features/home/controllers/home_work_orders_controller.dart';
 import 'package:osoul_x_psm/features/profile/views/profile_view.dart';
 import '../../../../core/localization/01_translation_keys.dart';
 import '../../../../core/localization/03_supported_locales.dart';

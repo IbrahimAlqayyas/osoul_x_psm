@@ -7,7 +7,7 @@ import 'package:osoul_x_psm/core/shared_widgets/logo.dart';
 import 'package:osoul_x_psm/core/theme/colors.dart';
 import 'package:osoul_x_psm/features/auth/models/user_model.dart';
 import 'package:osoul_x_psm/features/auth/views/login_view.dart';
-import 'package:osoul_x_psm/features/home/views/home_view.dart';
+import 'package:osoul_x_psm/features/home/views/home_work_orders_view.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
