@@ -223,54 +223,54 @@ class HomeViewWorkOrders extends StatelessWidget {
     );
   }
 
-  Widget _buildFeatureButton({
-    required String title,
-    String? subtitle,
-    required IconData icon,
-    required VoidCallback onTap,
-    LinearGradient? gradient,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: gradient ?? kMainGradient,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withAlpha(opacityToAlpha(0.1)),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, size: 35, color: Colors.white),
-            const SizedBox(height: 12),
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 18,
-                // fontWeight: FontWeight.bold,
-                color: kWhiteColor,
-              ),
-              textAlign: TextAlign.center,
-            ),
+  // Widget _buildFeatureButton({
+  //   required String title,
+  //   String? subtitle,
+  //   required IconData icon,
+  //   required VoidCallback onTap,
+  //   LinearGradient? gradient,
+  // }) {
+  //   return GestureDetector(
+  //     onTap: onTap,
+  //     child: Container(
+  //       decoration: BoxDecoration(
+  //         gradient: gradient ?? kMainGradient,
+  //         borderRadius: BorderRadius.circular(16),
+  //         boxShadow: [
+  //           BoxShadow(
+  //             color: Colors.black.withAlpha(opacityToAlpha(0.1)),
+  //             blurRadius: 10,
+  //             offset: const Offset(0, 4),
+  //           ),
+  //         ],
+  //       ),
+  //       child: Column(
+  //         mainAxisAlignment: MainAxisAlignment.center,
+  //         children: [
+  //           Icon(icon, size: 35, color: Colors.white),
+  //           const SizedBox(height: 12),
+  //           Text(
+  //             title,
+  //             style: const TextStyle(
+  //               fontSize: 18,
+  //               // fontWeight: FontWeight.bold,
+  //               color: kWhiteColor,
+  //             ),
+  //             textAlign: TextAlign.center,
+  //           ),
 
-            if (subtitle != null) const SizedBox(height: 4),
-            if (subtitle != null)
-              Text(
-                subtitle,
-                style: TextStyle(fontSize: 12, color: Colors.white.withAlpha(opacityToAlpha(0.8))),
-                textAlign: TextAlign.center,
-              ),
-          ],
-        ),
-      ),
-    );
-  }
+  //           if (subtitle != null) const SizedBox(height: 4),
+  //           if (subtitle != null)
+  //             Text(
+  //               subtitle,
+  //               style: TextStyle(fontSize: 12, color: Colors.white.withAlpha(opacityToAlpha(0.8))),
+  //               textAlign: TextAlign.center,
+  //             ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 }
 
 class WorkOrderItem extends StatelessWidget {
@@ -328,7 +328,7 @@ class WorkOrderItem extends StatelessWidget {
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Work Order',
@@ -340,7 +340,7 @@ class WorkOrderItem extends StatelessWidget {
                       color: kPrimaryColor,
                     ),
                   ),
-                  const VPadding(8),
+                  const VPadding(4),
                   Row(
                     children: [
                       Text(
@@ -366,7 +366,7 @@ class WorkOrderItem extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const VPadding(8),
+                  const VPadding(4),
                   // Transaction ID
                   Row(
                     children: [
@@ -393,7 +393,7 @@ class WorkOrderItem extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const VPadding(8),
+                  const VPadding(4),
                   Row(
                     children: [
                       Text(
