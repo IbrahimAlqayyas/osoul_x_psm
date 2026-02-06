@@ -13,6 +13,7 @@ class HomeWorkOrdersController extends GetxController {
   bool isLoading = false;
 
   List<WorkOrderModel> workOrders = [];
+  String selectedType = '';
 
   Future<void> getWorkOrders() async {
     isLoading = true;

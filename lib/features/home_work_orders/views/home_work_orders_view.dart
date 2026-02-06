@@ -11,6 +11,7 @@ import 'package:osoul_x_psm/core/theme/colors.dart';
 // import 'package:osoul_x_psm/features/collect/views/collect_view.dart';
 import 'package:osoul_x_psm/features/home_work_orders/controllers/home_work_orders_controller.dart';
 import 'package:osoul_x_psm/features/home_work_orders/models/work_order_model.dart';
+import 'package:osoul_x_psm/features/home_work_orders/views/work_order_details_view.dart';
 import 'package:osoul_x_psm/features/products/views/select_products_view.dart';
 import 'package:osoul_x_psm/main.dart';
 // import 'package:osoul_x_psm/features/returns/views/return_view.dart';
@@ -80,9 +81,16 @@ class HomeViewWorkOrders extends StatelessWidget {
                                                 // controller.isFrozen = false;
                                                 // kLog(controller.isFrozen);
                                                 // controller.getItemsToAddInTransferOrder();
+                                                // Get.to(
+                                                //   () => ProductsView(
+                                                //     filterText: 'Chickens',
+                                                //     workOrder: controller.workOrders[index],
+                                                //   ),
+                                                // );
+                                                controller.selectedType = 'Chickens';
                                                 Get.to(
-                                                  () => ProductsView(
-                                                    filterText: 'Chickens',
+                                                  () => WorkOrderDetailsView(
+                                                    type: 'Chickens',
                                                     workOrder: controller.workOrders[index],
                                                   ),
                                                 );
@@ -100,9 +108,16 @@ class HomeViewWorkOrders extends StatelessWidget {
                                                 // controller.isFrozen = true;
                                                 // kLog(controller.isFrozen);
                                                 // controller.getItemsToAddInTransferOrder();
+                                                // Get.to(
+                                                //   () => ProductsView(
+                                                //     filterText: 'Portions',
+                                                //     workOrder: controller.workOrders[index],
+                                                //   ),
+                                                // );
+                                                controller.selectedType = 'Portions';
                                                 Get.to(
-                                                  () => ProductsView(
-                                                    filterText: 'Portions',
+                                                  () => WorkOrderDetailsView(
+                                                    type: 'Portions',
                                                     workOrder: controller.workOrders[index],
                                                   ),
                                                 );
@@ -124,9 +139,10 @@ class HomeViewWorkOrders extends StatelessWidget {
                                                 // controller.isFrozen = false;
                                                 // kLog(controller.isFrozen);
                                                 // controller.getItemsToAddInTransferOrder();
+                                                controller.selectedType = 'Coby';
                                                 Get.to(
-                                                  () => ProductsView(
-                                                    filterText: 'Co-by',
+                                                  () => WorkOrderDetailsView(
+                                                    type: 'Coby',
                                                     workOrder: controller.workOrders[index],
                                                   ),
                                                 );
@@ -144,9 +160,10 @@ class HomeViewWorkOrders extends StatelessWidget {
                                                 // controller.isFrozen = true;
                                                 // kLog(controller.isFrozen);
                                                 // controller.getItemsToAddInTransferOrder();
+                                                controller.selectedType = 'Marinated';
                                                 Get.to(
-                                                  () => ProductsView(
-                                                    filterText: 'Marinated',
+                                                  () => WorkOrderDetailsView(
+                                                    type: 'Marinated',
                                                     workOrder: controller.workOrders[index],
                                                   ),
                                                 );

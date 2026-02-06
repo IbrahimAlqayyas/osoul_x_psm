@@ -3,6 +3,7 @@ import 'package:osoul_x_psm/core/network/api_client.dart';
 import 'package:osoul_x_psm/core/network/api_utils.dart';
 import 'package:osoul_x_psm/core/network/endpoints.dart';
 import 'package:osoul_x_psm/features/auth/models/user_model.dart';
+import 'package:osoul_x_psm/features/home_work_orders/models/work_order_item_line_model.dart';
 import 'package:osoul_x_psm/features/home_work_orders/models/work_order_model.dart';
 import 'package:osoul_x_psm/features/products/models/product_model.dart';
 // import 'package:osoul_x_psm/features/collect/models/collect_orders_model.dart';
@@ -122,6 +123,26 @@ class Services {
           workOrders.add(WorkOrderModel.fromJson(item));
         }
         returnValue = workOrders;
+      },
+    );
+
+    return returnValue;
+  }
+
+  Future<List<WorkOrderItemLineModel>?> getWorkOrderItemLine(String type) async {
+    List<WorkOrderItemLineModel>? returnValue;
+    await ApiClient().request(
+      serviceName: 'get Work Orders Item Lines - type: $type',
+      requestType: RequestType.get,
+      uri: Endpoints().workOrderItemLineUri(type),
+      printCurl: true,
+      headers: ApiUtils().headers(url: Endpoints().workOrderItemLineUri(type), method: 'GET'),
+      onSuccess: (list) {
+        List<WorkOrderItemLineModel> workOrderItemLines = [];
+        for (var item in list) {
+          workOrderItemLines.add(WorkOrderItemLineModel.fromJson(item));
+        }
+        returnValue = workOrderItemLines;
       },
     );
 

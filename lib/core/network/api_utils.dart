@@ -52,24 +52,24 @@ class OAuthConfig {
 
   // Staging Configuration
   static const stagingConsumerKey =
-      '091cd3f296f8811a57a3a804c33954ef6e0647e73b669b0a3885a8edf4914c75';
+      '38396f0c764f34d7945110928cbcf449b2bacb0e6cd0cce74548ed4ba0508bcc';
   static const stagingConsumerSecret =
-      '57a8e6bf61c03aa773bec8d59b01dd801ba56a26c8e680a67f721f52254acfbb';
+      '0aebfaac72bb0280812342f61c488cc4cee3bd22020d1e307d7f1a7962d0b0a5';
   static const stagingAccessToken =
-      '4c499cbb8757dabd76b82afe1f33825c71bc1f5d009ae8c885d8a6c8dd9db702';
+      'f03f574fdd4dc3a5085c46c4ee789038418ee5d713696c4ec29313ef910d5a6b';
   static const stagingTokenSecret =
-      'b1fcff8fb19e123678ce107703f061de9f184723c8337b4b84530f91e5fa63c3';
+      '84c9ff01454c8b90027af66ae5639b457080bec4b28eb0fe92022be25181827a';
   static const stagingRealm = '9099462_SB1';
 
   // Production Configuration (TODO: Replace with actual production credentials)
   static const productionConsumerKey =
-      '12f32070a65952328828dae2c98e60dcdd95d9a3805b891120d230d9bab786f1';
+      '38396f0c764f34d7945110928cbcf449b2bacb0e6cd0cce74548ed4ba0508bcc';
   static const productionConsumerSecret =
-      '5f8fae23d70ef50947ebe076283f5befcf04b36d18238c398a21e567ad945d0b';
+      '0aebfaac72bb0280812342f61c488cc4cee3bd22020d1e307d7f1a7962d0b0a5';
   static const productionAccessToken =
-      '7739175be31aee9a9f1844ba3beccbfa2798e45a0fefc766be1aba66bc45898a';
+      'f03f574fdd4dc3a5085c46c4ee789038418ee5d713696c4ec29313ef910d5a6b';
   static const productionTokenSecret =
-      'd7423eba80563b9f81390ed720a917cc36bbaf0ff2cbbee9ce6efd50a6aac0a7';
+      '84c9ff01454c8b90027af66ae5639b457080bec4b28eb0fe92022be25181827a';
   static const productionRealm = '9099462';
 
   // Get current environment configuration

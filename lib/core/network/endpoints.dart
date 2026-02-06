@@ -38,6 +38,11 @@ class Endpoints {
     return Uri.parse('${apiUtils.getBaseURL()}$scriptId');
   }
 
+  Uri workOrderItemLineUri(String type) {
+    final scriptId = _isStaging ? '2052' : '2052';
+    return Uri.parse('${apiUtils.getBaseURL()}$scriptId&type=$type');
+  }
+
   // Uri transferOrderCreateUri() {
   //   final scriptId = _isStaging ? '1888' : '2017';
   //   return Uri.parse('${apiUtils.getBaseURL()}$scriptId');
