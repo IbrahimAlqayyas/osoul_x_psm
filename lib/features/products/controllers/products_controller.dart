@@ -11,14 +11,15 @@ class ProductsController extends GetxController {
   List<ProductModel> selectedProducts = [];
   List<ProductModel> nonSelectedProducts = [];
   bool isLoadingProducts = false;
+  bool isLoadingEnter = false;
 
   Future<void> getProducts() async {
     isLoadingProducts = true;
     update();
-    productsToShow = (await Services().getProducts(false)) ?? [];
+    productsToShow = (await Services().getProducts()) ?? [];
     nonSelectedProducts = productsToShow;
     nonSelectedProducts.removeWhere(
-      (item) => selectedProducts.any((selectedItem) => selectedItem.id == item.id),
+      (item) => selectedProducts.any((selectedItem) => selectedItem.item == item.item),
     );
     isLoadingProducts = false;
     update();
@@ -26,28 +27,28 @@ class ProductsController extends GetxController {
 
   void toggleItemSelection(ProductModel item) {
     item.isSelected = !item.isSelected;
-    if (item.isSelected && (item.quantity == null || item.quantity == 0)) {
-      item.quantity = 1; // Default quantity when selected
+    if (item.isSelected && (item.totalquantity == null || item.totalquantity == 0)) {
+      item.totalquantity = 1; // Default quantity when selected
     }
     update();
   }
 
   void incrementQuantity(ProductModel item) {
-    item.quantity = (item.quantity ?? 0) + 1;
-    item.textController!.text = item.quantity.toString();
+    item.totalquantity = (item.totalquantity ?? 0) + 1;
+    item.textController!.text = item.totalquantity.toString();
     update();
   }
 
   void decrementQuantity(ProductModel item) {
-    if ((item.quantity ?? 0) > 1) {
-      item.quantity = (item.quantity ?? 0) - 1;
-      item.textController!.text = item.quantity.toString();
+    if ((item.totalquantity ?? 0) > 1) {
+      item.totalquantity = (item.totalquantity ?? 0) - 1;
+      item.textController!.text = item.totalquantity.toString();
     }
     update();
   }
 
   void updateQuantity(ProductModel item, num value) {
-    item.quantity = value;
+    item.totalquantity = value;
     update();
   }
 

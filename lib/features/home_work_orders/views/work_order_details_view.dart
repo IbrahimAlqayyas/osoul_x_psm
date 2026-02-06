@@ -5,11 +5,15 @@ import 'package:osoul_x_psm/core/shared_widgets/base_scaffold.dart';
 import 'package:osoul_x_psm/core/shared_widgets/button_gradient.dart';
 import 'package:osoul_x_psm/core/shared_widgets/loading_indicator.dart';
 import 'package:osoul_x_psm/core/shared_widgets/padding.dart';
+import 'package:osoul_x_psm/core/shared_widgets/popups_dialogs.dart';
 import 'package:osoul_x_psm/core/theme/colors.dart';
+import 'package:osoul_x_psm/features/home_work_orders/controllers/home_work_orders_controller.dart';
 import 'package:osoul_x_psm/features/home_work_orders/controllers/work_order_details_controller.dart';
 import 'package:osoul_x_psm/features/home_work_orders/models/work_order_item_line_model.dart';
 import 'package:osoul_x_psm/features/home_work_orders/models/work_order_model.dart';
 import 'package:get/get.dart';
+import 'package:osoul_x_psm/features/products/controllers/products_controller.dart';
+import 'package:osoul_x_psm/features/products/views/products_view.dart';
 
 class WorkOrderDetailsView extends StatelessWidget {
   final String type;
@@ -61,7 +65,50 @@ class WorkOrderDetailsView extends StatelessWidget {
             children: [
               Align(
                 alignment: AlignmentDirectional.centerStart,
-                child: MyGradientButton(onPressed: () {}, label: 'Add Items'),
+                child: MyGradientButton(
+                  onPressed: () {
+                    /// go to add products
+                    Get.to(
+                      () => ProductsView(
+                        workOrder: workOrder,
+                        onEnterPressed: () async {
+                          /// call api post request
+                          bool isEntered = await controller.enterItemLine(
+                            type: type,
+                            workOrderId: workOrder.values!.internalid![0].value!,
+                            products: Get.find<ProductsController>().selectedProducts,
+                          );
+
+                          /// if succeeded - get back 4 times
+                          /// refresh work orders
+                          /// go to the transfer order just was opening - take id from work orders controller
+                          if (isEntered) {
+                            Get.back();
+                            Get.back();
+                            Get.back();
+                            Get.back();
+                            await Get.find<HomeWorkOrdersController>().getWorkOrders();
+                            // Get.to(
+                            //   () => WorkOrderDetailsView(
+                            //     type: type,
+                            //     workOrder: Get.find<HomeWorkOrdersController>().workOrders
+                            //         .firstWhere(
+                            //           (element) =>
+                            //               element.id ==
+                            //               Get.find<HomeWorkOrdersController>().selectedWorkOrderId,
+                            //         ),
+                            //   ),
+                            // );
+                            showSuccessDialog();
+                          } else {
+                            showFailureDialog();
+                          }
+                        },
+                      ),
+                    );
+                  },
+                  label: 'Add Items',
+                ),
               ),
 
               const VPadding(16),

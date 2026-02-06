@@ -1,16 +1,20 @@
 class WorkOrderItemLineModel {
   String? item;
   String? itemName;
-  String? totalquantity;
-  String? prducedquantity;
+  num? totalquantity;
+  num? prducedquantity;
 
   WorkOrderItemLineModel({this.item, this.itemName, this.totalquantity, this.prducedquantity});
 
   WorkOrderItemLineModel.fromJson(Map<String, dynamic> json) {
     item = json['item'];
     itemName = json['itemname'];
-    totalquantity = json['totalquantity'];
-    prducedquantity = json['prducedquantity'];
+    totalquantity = json['totalquantity'] != null && json['totalquantity'] != ''
+        ? num.parse(json['totalquantity'])
+        : 0;
+    prducedquantity = json['prducedquantity'] != null && json['prducedquantity'] != ''
+        ? num.parse(json['prducedquantity'])
+        : 0;
   }
 
   Map<String, dynamic> toJson() {

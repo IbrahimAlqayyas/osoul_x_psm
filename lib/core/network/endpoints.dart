@@ -43,19 +43,19 @@ class Endpoints {
     return Uri.parse('${apiUtils.getBaseURL()}$scriptId&type=$type');
   }
 
-  // Uri transferOrderCreateUri() {
-  //   final scriptId = _isStaging ? '1888' : '2017';
-  //   return Uri.parse('${apiUtils.getBaseURL()}$scriptId');
-  // }
+  Uri enterItemLineUri() {
+    final scriptId = _isStaging ? '2052' : '2052';
+    return Uri.parse('${apiUtils.getBaseURL()}$scriptId');
+  }
 
   // Uri transferOrderDetailsUri(String internalId) {
   //   final scriptId = _isStaging ? '1893' : '2018';
   //   return Uri.parse('${apiUtils.getBaseURL()}$scriptId&internalid=$internalId');
   // }
 
-  Uri itemsBrandsUri(bool isFrozen) {
-    final scriptId = _isStaging ? '1896' : '2028';
-    return Uri.parse('${apiUtils.getBaseURL()}$scriptId&driverid=$kDriverId&isfrozen=$isFrozen');
+  Uri itemsBrandsUri() {
+    final scriptId = _isStaging ? '2052' : '2052';
+    return Uri.parse('${apiUtils.getBaseURL()}$scriptId');
   }
 
   // Uri receiptOrderListerUri() {

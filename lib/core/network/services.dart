@@ -149,6 +149,22 @@ class Services {
     return returnValue;
   }
 
+  Future<bool> enterItemLine(Map<String, dynamic> body) async {
+    bool returnValue = false;
+    await ApiClient().request(
+      serviceName: 'enter Item Line',
+      requestType: RequestType.post,
+      uri: Endpoints().enterItemLineUri(),
+      printCurl: true,
+      headers: ApiUtils().headers(url: Endpoints().enterItemLineUri(), method: 'POST'),
+      body: body,
+      onSuccess: (list) {
+        returnValue = true;
+      },
+    );
+
+    return returnValue;
+  }
   // Future<List<TransferItemModel>?> getTransferOrders() async {
   //   List<TransferItemModel>? returnValue;
   //   await ApiClient().request(
@@ -189,14 +205,14 @@ class Services {
   //   return returnValue;
   // }
 
-  Future<List<ProductModel>?> getProducts(bool isFrozen) async {
+  Future<List<ProductModel>?> getProducts() async {
     List<ProductModel>? returnValue;
     await ApiClient().request(
-      serviceName: 'get Items To Add In Transfer Order',
+      serviceName: 'get products',
       requestType: RequestType.get,
-      uri: Endpoints().itemsBrandsUri(isFrozen),
+      uri: Endpoints().itemsBrandsUri(),
       printCurl: true,
-      headers: ApiUtils().headers(url: Endpoints().itemsBrandsUri(isFrozen), method: 'GET'),
+      headers: ApiUtils().headers(url: Endpoints().itemsBrandsUri(), method: 'GET'),
       onSuccess: (list) {
         List<ProductModel> items = [];
         for (var item in list) {

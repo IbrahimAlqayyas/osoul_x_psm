@@ -18,12 +18,13 @@ import 'package:osoul_x_psm/main.dart';
 import 'package:get/get.dart';
 
 class ProductsSelectionReviewView extends StatelessWidget {
-  const ProductsSelectionReviewView({super.key});
+  const ProductsSelectionReviewView({super.key, required this.onEnterPressed});
+  final VoidCallback onEnterPressed;
 
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
-      title: selectedProducts.tr,
+      title: 'Items Quantities',
       body: GetBuilder(
         init: ProductsController(),
         builder: (controller) {
@@ -99,20 +100,9 @@ class ProductsSelectionReviewView extends StatelessWidget {
               // Create Button
               Padding(
                 padding: const EdgeInsets.all(20),
-                child:
-                    // controller.isLoadingCreateTransferOrder
-                    //     ? MyProgressIndicator()
-                    //     :
-                    MyGradientButton(
-                      label: createOrder.tr,
-                      onPressed: () {
-                        // controller.createTransferOrder();
-                        Get.back();
-                        Get.back();
-                        Get.back();
-                        showSuccessDialog();
-                      },
-                    ),
+                child: controller.isLoadingEnter
+                    ? MyProgressIndicator()
+                    : MyGradientButton(label: 'Enter', onPressed: onEnterPressed),
               ),
             ],
           );
@@ -180,7 +170,7 @@ class ItemToAddInTransferOrderWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: kPrimaryColor.withAlpha(opacityToAlpha(0.3)), width: 1),
                 ),
-                child: Center(child: Image.asset('assets/icons/fresh.png', height: 26)),
+                child: Center(child: Image.asset('assets/icons/chicken_face.png', height: 26)),
               ),
               const HPadding(12),
 
@@ -190,7 +180,7 @@ class ItemToAddInTransferOrderWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      item.name ?? 'N/A',
+                      item.itemName ?? 'N/A',
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
@@ -202,7 +192,7 @@ class ItemToAddInTransferOrderWidget extends StatelessWidget {
                     ),
                     const VPadding(4),
                     Text(
-                      '${code.tr}: ${item.code ?? 'N/A'}',
+                      '${code.tr}: ${item.item ?? 'N/A'}',
                       style: TextStyle(
                         fontSize: 12,
                         color: kBlackColor.withAlpha(opacityToAlpha(0.6)),
@@ -294,7 +284,7 @@ class ItemToAddInTransferOrderWidget extends StatelessWidget {
                       height: 50,
                       child: CustomTextFieldWidget(
                         controller: item.textController!,
-                        hint: '${item.quantity ?? 0}',
+                        hint: '${item.totalquantity ?? 0}',
                         keyBoardType: TextInputType.number,
                         formatters: [FilteringTextInputFormatter.digitsOnly],
                         isCentered: true,

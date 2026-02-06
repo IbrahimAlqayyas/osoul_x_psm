@@ -17,31 +17,39 @@ import 'package:osoul_x_psm/features/products/views/review_products_view.dart';
 import 'package:osoul_x_psm/main.dart';
 
 class ProductsView extends StatelessWidget {
-  const ProductsView({super.key, this.filterText = '', required this.workOrder});
+  const ProductsView({
+    super.key,
+    this.filterText = '',
+    required this.workOrder,
+    required this.onEnterPressed,
+  });
 
   final String filterText;
   final WorkOrderModel workOrder;
+  final VoidCallback onEnterPressed;
 
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
-      title: createTransferOrderTitle.tr,
+      title: 'Items List',
       body: GetBuilder<ProductsController>(
         init: ProductsController(),
         builder: (controller) {
           return RefreshIndicator(
             onRefresh: () => controller.getProducts(),
             child: controller.isLoadingProducts
-                ? const Padding(padding: EdgeInsets.only(top: 150), child: MyProgressIndicator())
+                ? const Padding(padding: EdgeInsets.only(top: 100), child: MyProgressIndicator())
                 : controller.productsToShow.isEmpty
-                ? const Padding(padding: EdgeInsets.only(top: 150), child: NoItemsWidget())
+                ? const Padding(padding: EdgeInsets.only(top: 100), child: NoItemsWidget())
                 : Column(
                     children: [
                       /// counting
                       GestureDetector(
                         onTap: () {
                           if (controller.selectedProducts.isNotEmpty) {
-                            Get.to(() => ProductsSelectionReviewView());
+                            Get.to(
+                              () => ProductsSelectionReviewView(onEnterPressed: onEnterPressed),
+                            );
                           }
                         },
                         child: Container(
@@ -106,8 +114,8 @@ class ProductsView extends StatelessWidget {
                             controller.nonSelectedProducts = controller.productsToShow
                                 .where(
                                   (element) =>
-                                      element.name!.toLowerCase().contains(str.toLowerCase()) ||
-                                      element.code!.toLowerCase().contains(str.toLowerCase()),
+                                      element.itemName!.toLowerCase().contains(str.toLowerCase()) ||
+                                      element.item!.toLowerCase().contains(str.toLowerCase()),
                                 )
                                 .toList();
                             controller.update();
@@ -215,7 +223,7 @@ class ProductToReviewWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: kPrimaryColor.withAlpha(opacityToAlpha(0.3)), width: 1),
                 ),
-                child: Center(child: Image.asset('assets/icons/fresh.png', height: 26)),
+                child: Center(child: Image.asset('assets/icons/chicken_face.png', height: 26)),
               ),
               const HPadding(12),
 
@@ -225,7 +233,7 @@ class ProductToReviewWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      item.name ?? 'N/A',
+                      item.itemName ?? 'N/A',
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
@@ -237,7 +245,7 @@ class ProductToReviewWidget extends StatelessWidget {
                     ),
                     const VPadding(4),
                     Text(
-                      '${code.tr}: ${item.code ?? 'N/A'}',
+                      '${code.tr}: ${item.item ?? 'N/A'}',
                       style: TextStyle(
                         fontSize: 12,
                         color: kBlackColor.withAlpha(opacityToAlpha(0.6)),
@@ -313,7 +321,7 @@ class ProductToReviewWidget extends StatelessWidget {
                       height: 50,
                       child: CustomTextFieldWidget(
                         controller: item.textController!,
-                        hint: '${item.quantity ?? 0}',
+                        hint: '${item.totalquantity ?? 0}',
                         keyBoardType: TextInputType.number,
                         formatters: [FilteringTextInputFormatter.digitsOnly],
                         isCentered: true,

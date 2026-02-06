@@ -1,37 +1,37 @@
 import 'package:flutter/material.dart';
 
 class ProductModel {
-  String? id;
-  String? code;
-  String? name;
-  num? quantity;
+  String? item;
+  String? itemName;
+  num? totalquantity;
+  num? producedquantity;
   bool isSelected = false;
   TextEditingController? textController;
 
   ProductModel({
-    this.id,
-    this.code,
-    this.name,
-    this.quantity,
+    this.item,
+    this.itemName,
+    this.totalquantity,
+    this.producedquantity,
     this.isSelected = false,
     this.textController,
   });
 
   ProductModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    code = json['code'];
-    name = json['name'];
-    quantity = json['quantity'] ?? 1;
+    item = json['item'];
+    itemName = json['itemname'];
+    totalquantity = json['totalquantity'] != null && json['totalquantity'] != '' ? num.parse(json['totalquantity']) : 0;
+    producedquantity = json['prducedquantity'] != null && json['prducedquantity'] != '' ? num.parse(json['prducedquantity']) : 0;
     isSelected = false;
-    textController = TextEditingController(text: quantity.toString());
+    textController = TextEditingController(text: totalquantity.toString());
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = this.id;
-    data['code'] = this.code;
-    data['name'] = this.name;
-    data['quantity'] = this.quantity;
+    data['item'] = this.item;
+    data['itemname'] = this.itemName;
+    data['totalquantity'] = this.totalquantity;
+    data['prducedquantity'] = this.producedquantity;
     data['isSelected'] = this.isSelected;
     return data;
   }

@@ -12,7 +12,7 @@ import 'package:osoul_x_psm/core/theme/colors.dart';
 import 'package:osoul_x_psm/features/home_work_orders/controllers/home_work_orders_controller.dart';
 import 'package:osoul_x_psm/features/home_work_orders/models/work_order_model.dart';
 import 'package:osoul_x_psm/features/home_work_orders/views/work_order_details_view.dart';
-import 'package:osoul_x_psm/features/products/views/select_products_view.dart';
+import 'package:osoul_x_psm/features/products/views/products_view.dart';
 import 'package:osoul_x_psm/main.dart';
 // import 'package:osoul_x_psm/features/returns/views/return_view.dart';
 // import 'package:osoul_x_psm/features/transfer_orders/views/transfer_orders_view.dart';
@@ -88,6 +88,11 @@ class HomeViewWorkOrders extends StatelessWidget {
                                                 //   ),
                                                 // );
                                                 controller.selectedType = 'Chickens';
+                                                controller.selectedWorkOrderId = controller
+                                                    .workOrders[index]
+                                                    .values!
+                                                    .internalid![0]
+                                                    .value!;
                                                 Get.to(
                                                   () => WorkOrderDetailsView(
                                                     type: 'Chickens',
@@ -115,6 +120,11 @@ class HomeViewWorkOrders extends StatelessWidget {
                                                 //   ),
                                                 // );
                                                 controller.selectedType = 'Portions';
+                                                controller.selectedWorkOrderId = controller
+                                                    .workOrders[index]
+                                                    .values!
+                                                    .internalid![0]
+                                                    .value!;
                                                 Get.to(
                                                   () => WorkOrderDetailsView(
                                                     type: 'Portions',
@@ -140,6 +150,11 @@ class HomeViewWorkOrders extends StatelessWidget {
                                                 // kLog(controller.isFrozen);
                                                 // controller.getItemsToAddInTransferOrder();
                                                 controller.selectedType = 'Coby';
+                                                controller.selectedWorkOrderId = controller
+                                                    .workOrders[index]
+                                                    .values!
+                                                    .internalid![0]
+                                                    .value!;
                                                 Get.to(
                                                   () => WorkOrderDetailsView(
                                                     type: 'Coby',
@@ -161,6 +176,11 @@ class HomeViewWorkOrders extends StatelessWidget {
                                                 // kLog(controller.isFrozen);
                                                 // controller.getItemsToAddInTransferOrder();
                                                 controller.selectedType = 'Marinated';
+                                                controller.selectedWorkOrderId = controller
+                                                    .workOrders[index]
+                                                    .values!
+                                                    .internalid![0]
+                                                    .value!;
                                                 Get.to(
                                                   () => WorkOrderDetailsView(
                                                     type: 'Marinated',
