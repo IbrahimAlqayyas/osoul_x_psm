@@ -23,6 +23,7 @@ dependencies:
   shimmer: ^3.0.0
   package_info_plus:
   pinput: ^5.0.0
+  change_app_package_name: 
 
   
   flutter:

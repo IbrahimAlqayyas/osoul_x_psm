@@ -1,4 +1,4 @@
-package com.example.osoul_x_psm
+package com.osoul.psm
 
 import io.flutter.embedding.android.FlutterActivity
 
