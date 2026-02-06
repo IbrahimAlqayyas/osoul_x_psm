@@ -5,27 +5,26 @@ import 'package:osoul_x_psm/features/products/models/product_model.dart';
 
 class ProductsController extends GetxController {
   TextEditingController searchController = TextEditingController();
-  
 
-  List<ItemToAddInTransferOrderModel> itemsToShow = [];
+  List<ProductModel> productsToShow = [];
 
-  List<ItemToAddInTransferOrderModel> selectedItems = [];
-  List<ItemToAddInTransferOrderModel> nonSelectedItems = [];
-  bool isLoadingItems = false;
-  
-  Future<void> getItemsToAddInTransferOrder() async {
-    isLoadingItems = true;
+  List<ProductModel> selectedProducts = [];
+  List<ProductModel> nonSelectedProducts = [];
+  bool isLoadingProducts = false;
+
+  Future<void> getProducts() async {
+    isLoadingProducts = true;
     update();
-    itemsToShow = (await Services().getItemsToAddInTransferOrder(false)) ?? [];
-    nonSelectedItems = itemsToShow;
-    nonSelectedItems.removeWhere(
-      (item) => selectedItems.any((selectedItem) => selectedItem.id == item.id),
+    productsToShow = (await Services().getProducts(false)) ?? [];
+    nonSelectedProducts = productsToShow;
+    nonSelectedProducts.removeWhere(
+      (item) => selectedProducts.any((selectedItem) => selectedItem.id == item.id),
     );
-    isLoadingItems = false;
+    isLoadingProducts = false;
     update();
   }
 
-  void toggleItemSelection(ItemToAddInTransferOrderModel item) {
+  void toggleItemSelection(ProductModel item) {
     item.isSelected = !item.isSelected;
     if (item.isSelected && (item.quantity == null || item.quantity == 0)) {
       item.quantity = 1; // Default quantity when selected
@@ -33,13 +32,13 @@ class ProductsController extends GetxController {
     update();
   }
 
-  void incrementQuantity(ItemToAddInTransferOrderModel item) {
+  void incrementQuantity(ProductModel item) {
     item.quantity = (item.quantity ?? 0) + 1;
     item.textController!.text = item.quantity.toString();
     update();
   }
 
-  void decrementQuantity(ItemToAddInTransferOrderModel item) {
+  void decrementQuantity(ProductModel item) {
     if ((item.quantity ?? 0) > 1) {
       item.quantity = (item.quantity ?? 0) - 1;
       item.textController!.text = item.quantity.toString();
@@ -47,14 +46,14 @@ class ProductsController extends GetxController {
     update();
   }
 
-  void updateQuantity(ItemToAddInTransferOrderModel item, num value) {
+  void updateQuantity(ProductModel item, num value) {
     item.quantity = value;
     update();
   }
 
   @override
   void onInit() {
-    getItemsToAddInTransferOrder();
+    getProducts();
     super.onInit();
   }
 }

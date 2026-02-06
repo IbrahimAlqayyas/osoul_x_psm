@@ -80,7 +80,7 @@ class HomeView extends StatelessWidget {
                                                 // kLog(controller.isFrozen);
                                                 // controller.getItemsToAddInTransferOrder();
                                                 Get.to(
-                                                  () => AddEditTransferOrderView(
+                                                  () => ProductsView(
                                                     filterText: 'Chickens',
                                                     workOrder: controller.workOrders[index],
                                                   ),
@@ -100,7 +100,7 @@ class HomeView extends StatelessWidget {
                                                 // kLog(controller.isFrozen);
                                                 // controller.getItemsToAddInTransferOrder();
                                                 Get.to(
-                                                  () => AddEditTransferOrderView(
+                                                  () => ProductsView(
                                                     filterText: 'Portions',
                                                     workOrder: controller.workOrders[index],
                                                   ),
@@ -124,7 +124,7 @@ class HomeView extends StatelessWidget {
                                                 // kLog(controller.isFrozen);
                                                 // controller.getItemsToAddInTransferOrder();
                                                 Get.to(
-                                                  () => AddEditTransferOrderView(
+                                                  () => ProductsView(
                                                     filterText: 'Co-by',
                                                     workOrder: controller.workOrders[index],
                                                   ),
@@ -144,7 +144,7 @@ class HomeView extends StatelessWidget {
                                                 // kLog(controller.isFrozen);
                                                 // controller.getItemsToAddInTransferOrder();
                                                 Get.to(
-                                                  () => AddEditTransferOrderView(
+                                                  () => ProductsView(
                                                     filterText: 'Marinated',
                                                     workOrder: controller.workOrders[index],
                                                   ),

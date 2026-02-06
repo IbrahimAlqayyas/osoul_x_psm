@@ -4,6 +4,7 @@ import 'package:osoul_x_psm/core/constants/ui_constants.dart';
 import 'package:osoul_x_psm/core/localization/01_translation_keys.dart';
 import 'package:osoul_x_psm/core/shared_widgets/base_scaffold.dart';
 import 'package:get/get.dart';
+import 'package:osoul_x_psm/core/shared_widgets/button_rounded.dart';
 import 'package:osoul_x_psm/core/shared_widgets/custom_textfield_widget.dart';
 import 'package:osoul_x_psm/core/shared_widgets/loading_indicator.dart';
 import 'package:osoul_x_psm/core/shared_widgets/no_items_widget.dart';
@@ -13,22 +14,11 @@ import 'package:osoul_x_psm/features/home/models/work_order_model.dart';
 import 'package:osoul_x_psm/features/products/controllers/products_controller.dart';
 import 'package:osoul_x_psm/features/products/models/product_model.dart';
 import 'package:osoul_x_psm/features/products/views/review_products_view.dart';
-// import 'package:osoul_x_psm/features/transfer_orders/controllers/add_transfer_order_controller.dart';
-// import 'package:osoul_x_psm/features/transfer_orders/controllers/transfer_orders_controller.dart';
-// import 'package:osoul_x_psm/features/transfer_orders/models/items_to_add_in_transfer_order.dart';
-// import 'package:osoul_x_psm/features/transfer_orders/models/transfer_order_model.dart';
-// import 'package:osoul_x_psm/features/transfer_orders/views/summary_and_confirm_transfer_order_view.dart';
 import 'package:osoul_x_psm/main.dart';
 
-class AddEditTransferOrderView extends StatelessWidget {
-  const AddEditTransferOrderView({
-    super.key,
-    this.isEdit = false,
-    this.filterText = '',
-    required this.workOrder,
-  });
+class ProductsView extends StatelessWidget {
+  const ProductsView({super.key, this.filterText = '', required this.workOrder});
 
-  final bool isEdit;
   final String filterText;
   final WorkOrderModel workOrder;
 
@@ -40,23 +30,18 @@ class AddEditTransferOrderView extends StatelessWidget {
         init: ProductsController(),
         builder: (controller) {
           return RefreshIndicator(
-            onRefresh: () => controller.getItemsToAddInTransferOrder(),
-            child: controller.isLoadingItems
+            onRefresh: () => controller.getProducts(),
+            child: controller.isLoadingProducts
                 ? const Padding(padding: EdgeInsets.only(top: 150), child: MyProgressIndicator())
-                : controller.itemsToShow.isEmpty
+                : controller.productsToShow.isEmpty
                 ? const Padding(padding: EdgeInsets.only(top: 150), child: NoItemsWidget())
                 : Column(
                     children: [
                       /// counting
                       GestureDetector(
                         onTap: () {
-                          if (isEdit == false) {
-                            if (controller.selectedItems.isNotEmpty) {
-                              Get.to(() => SummaryAndConfirmTransferOrderView());
-                            }
-                          } else {
-                            Get.back();
-                            Get.back();
+                          if (controller.selectedProducts.isNotEmpty) {
+                            Get.to(() => ProductsSelectionReviewView());
                           }
                         },
                         child: Container(
@@ -91,7 +76,7 @@ class AddEditTransferOrderView extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Text(
-                                  '${controller.selectedItems.length}',
+                                  '${controller.selectedProducts.length}',
                                   style: const TextStyle(
                                     fontSize: 16,
                                     fontFamily: kRoboto,
@@ -100,7 +85,7 @@ class AddEditTransferOrderView extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              if (controller.selectedItems.isNotEmpty) ...[
+                              if (controller.selectedProducts.isNotEmpty) ...[
                                 const HPadding(12),
                                 const Icon(Icons.arrow_forward_ios, color: kPrimaryColor, size: 20),
                               ],
@@ -118,7 +103,7 @@ class AddEditTransferOrderView extends StatelessWidget {
                         suffixIcon: const Icon(Icons.search, color: kSecondaryColor),
                         onChanged: (str) {
                           if (str.isNotEmpty) {
-                            controller.nonSelectedItems = controller.itemsToShow
+                            controller.nonSelectedProducts = controller.productsToShow
                                 .where(
                                   (element) =>
                                       element.name!.toLowerCase().contains(str.toLowerCase()) ||
@@ -127,8 +112,8 @@ class AddEditTransferOrderView extends StatelessWidget {
                                 .toList();
                             controller.update();
                           } else {
-                            controller.nonSelectedItems = controller.itemsToShow
-                                .where((e) => !controller.selectedItems.contains(e))
+                            controller.nonSelectedProducts = controller.productsToShow
+                                .where((e) => !controller.selectedProducts.contains(e))
                                 .toList();
                             controller.update();
                           }
@@ -138,7 +123,7 @@ class AddEditTransferOrderView extends StatelessWidget {
                       // Available Items Section
                       Column(
                         children: [
-                          controller.nonSelectedItems.isEmpty
+                          controller.nonSelectedProducts.isEmpty
                               ? Center(
                                   child: Padding(
                                     padding: EdgeInsets.all(32),
@@ -152,13 +137,12 @@ class AddEditTransferOrderView extends StatelessWidget {
                                   height: getBodyHeight() - 136,
                                   child: ListView.builder(
                                     // padding: const EdgeInsets.all(16),
-                                    itemCount: controller.nonSelectedItems.length,
+                                    itemCount: controller.nonSelectedProducts.length,
                                     itemBuilder: (context, index) {
-                                      return ItemToAddInTransferOrderWidget(
-                                        item: controller.nonSelectedItems[index],
+                                      return ProductToReviewWidget(
+                                        item: controller.nonSelectedProducts[index],
                                         controller: controller,
                                         isSelected: false,
-                                        isEdit: isEdit,
                                       );
                                     },
                                   ),
@@ -174,19 +158,17 @@ class AddEditTransferOrderView extends StatelessWidget {
   }
 }
 
-class ItemToAddInTransferOrderWidget extends StatelessWidget {
-  const ItemToAddInTransferOrderWidget({
+class ProductToReviewWidget extends StatelessWidget {
+  const ProductToReviewWidget({
     super.key,
     required this.item,
     required this.controller,
     required this.isSelected,
-    required this.isEdit,
   });
 
-  final ItemToAddInTransferOrderModel item;
+  final ProductModel item;
   final ProductsController controller;
   final bool isSelected;
-  final bool isEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -269,28 +251,12 @@ class ItemToAddInTransferOrderWidget extends StatelessWidget {
               MySmallButton(
                 isSelected: isSelected,
                 onTap: () {
-                  if (isEdit) {
-                    // Get.find<TransferOrdersController>().transferOrderDetails!.items!.add(
-                    //   TransferOrderItemModel(
-                    //     itemid: item.id,
-                    //     quantity: item.quantity,
-                    //     updatedQuantity: 1,
-                    //     item: item.name,
-                    //     name: item.name,
-                    //     quantityController: TextEditingController(text: '1'),
-                    //   ),
-                    // );
-                    // Get.find<TransferOrdersController>().update();
-                    // controller.selectedItems.add(item);
-                    // controller.nonSelectedItems.remove(item);
+                  if (isSelected) {
+                    controller.selectedProducts.remove(item);
+                    controller.nonSelectedProducts.add(item);
                   } else {
-                    if (isSelected) {
-                      controller.selectedItems.remove(item);
-                      controller.nonSelectedItems.add(item);
-                    } else {
-                      controller.selectedItems.add(item);
-                      controller.nonSelectedItems.remove(item);
-                    }
+                    controller.selectedProducts.add(item);
+                    controller.nonSelectedProducts.remove(item);
                   }
 
                   controller.update();
@@ -379,92 +345,6 @@ class ItemToAddInTransferOrderWidget extends StatelessWidget {
             ),
           ],
         ],
-      ),
-    );
-  }
-}
-
-class MySmallButton extends StatelessWidget {
-  const MySmallButton({
-    super.key,
-    required this.isSelected,
-    this.onTap,
-    this.title,
-    this.internalPadding,
-    this.isSecondary = false,
-    this.secondaryColor = kPrimaryColor,
-    this.isEnabled = true,
-  });
-  final bool isSelected;
-  final VoidCallback? onTap;
-  final String? title;
-  final EdgeInsets? internalPadding;
-  final bool isSecondary;
-  final Color? secondaryColor;
-  final bool isEnabled;
-
-  @override
-  Widget build(BuildContext context) {
-    return
-    // Add/Remove Button
-    GestureDetector(
-      onTap: isEnabled ? onTap : null,
-      child: Container(
-        padding: internalPadding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        decoration: BoxDecoration(
-          color: !isEnabled
-              ? kMutedTextColor.withAlpha(opacityToAlpha(0.1))
-              : (isSecondary ? kWhiteColor : null),
-          gradient: !isEnabled
-              ? null
-              : (isSecondary
-                    ? null
-                    : (isSelected
-                          ? LinearGradient(
-                              colors: [kRedColor, kRedColor.withAlpha(opacityToAlpha(0.8))],
-                            )
-                          : kMainGradient)),
-          borderRadius: BorderRadius.circular(10),
-          border: !isEnabled
-              ? Border.all(color: kMutedTextColor.withAlpha(opacityToAlpha(0.3)), width: 1)
-              : (isSecondary ? Border.all(color: secondaryColor!, width: 1) : null),
-          boxShadow: !isEnabled
-              ? []
-              : [
-                  BoxShadow(
-                    color: isSecondary
-                        ? secondaryColor!.withAlpha(opacityToAlpha(0.1))
-                        : (isSelected ? kRedColor : kPrimaryColor).withAlpha(opacityToAlpha(0.3)),
-                    blurRadius: 4,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (title == null) ...[
-              Icon(
-                isSelected ? Icons.delete_outline : Icons.add,
-                color: !isEnabled
-                    ? kMutedTextColor.withAlpha(opacityToAlpha(0.5))
-                    : (isSecondary ? secondaryColor : kWhiteColor),
-                size: 18,
-              ),
-              const SizedBox(width: 4),
-            ],
-            Text(
-              title ?? (isSelected ? remove.tr : add.tr),
-              style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.bold,
-                color: !isEnabled
-                    ? kMutedTextColor.withAlpha(opacityToAlpha(0.5))
-                    : (isSecondary ? secondaryColor : kWhiteColor),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }

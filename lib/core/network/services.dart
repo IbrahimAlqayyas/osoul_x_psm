@@ -167,8 +167,8 @@ class Services {
   //   return returnValue;
   // }
 
-  Future<List<ItemToAddInTransferOrderModel>?> getItemsToAddInTransferOrder(bool isFrozen) async {
-    List<ItemToAddInTransferOrderModel>? returnValue;
+  Future<List<ProductModel>?> getProducts(bool isFrozen) async {
+    List<ProductModel>? returnValue;
     await ApiClient().request(
       serviceName: 'get Items To Add In Transfer Order',
       requestType: RequestType.get,
@@ -176,9 +176,9 @@ class Services {
       printCurl: true,
       headers: ApiUtils().headers(url: Endpoints().itemsBrandsUri(isFrozen), method: 'GET'),
       onSuccess: (list) {
-        List<ItemToAddInTransferOrderModel> items = [];
+        List<ProductModel> items = [];
         for (var item in list) {
-          items.add(ItemToAddInTransferOrderModel.fromJson(item));
+          items.add(ProductModel.fromJson(item));
         }
         returnValue = items;
       },

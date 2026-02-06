@@ -17,8 +17,8 @@ import 'package:osoul_x_psm/features/products/models/product_model.dart';
 import 'package:osoul_x_psm/main.dart';
 import 'package:get/get.dart';
 
-class SummaryAndConfirmTransferOrderView extends StatelessWidget {
-  const SummaryAndConfirmTransferOrderView({super.key});
+class ProductsSelectionReviewView extends StatelessWidget {
+  const ProductsSelectionReviewView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class SummaryAndConfirmTransferOrderView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        '${controller.selectedItems.length}',
+                        '${controller.selectedProducts.length}',
                         style: const TextStyle(
                           fontSize: 16,
                           fontFamily: kRoboto,
@@ -77,18 +77,18 @@ class SummaryAndConfirmTransferOrderView extends StatelessWidget {
                 height: getBodyHeight() - 162,
                 child: GetBuilder<ProductsController>(
                   builder: (controller) => ListView.builder(
-                    itemCount: controller.selectedItems.length,
+                    itemCount: controller.selectedProducts.length,
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
                           ItemToAddInTransferOrderWidget(
-                            item: controller.selectedItems[index],
+                            item: controller.selectedProducts[index],
                             controller: controller,
                             isSelected: true,
                             isEdit: false,
                           ),
 
-                          if (index == controller.selectedItems.length - 1) const VPadding(350),
+                          if (index == controller.selectedProducts.length - 1) const VPadding(350),
                         ],
                       );
                     },
@@ -131,7 +131,7 @@ class ItemToAddInTransferOrderWidget extends StatelessWidget {
     required this.isEdit,
   });
 
-  final ItemToAddInTransferOrderModel item;
+  final ProductModel item;
   final ProductsController controller;
   final bool isSelected;
   final bool isEdit;
@@ -232,11 +232,11 @@ class ItemToAddInTransferOrderWidget extends StatelessWidget {
                     // controller.nonSelectedItems.remove(item);
                   } else {
                     if (isSelected) {
-                      controller.selectedItems.remove(item);
-                      controller.nonSelectedItems.add(item);
+                      controller.selectedProducts.remove(item);
+                      controller.nonSelectedProducts.add(item);
                     } else {
-                      controller.selectedItems.add(item);
-                      controller.nonSelectedItems.remove(item);
+                      controller.selectedProducts.add(item);
+                      controller.nonSelectedProducts.remove(item);
                     }
                   }
 

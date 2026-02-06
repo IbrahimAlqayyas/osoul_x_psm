@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ItemToAddInTransferOrderModel {
+class ProductModel {
   String? id;
   String? code;
   String? name;
@@ -8,7 +8,7 @@ class ItemToAddInTransferOrderModel {
   bool isSelected = false;
   TextEditingController? textController;
 
-  ItemToAddInTransferOrderModel({
+  ProductModel({
     this.id,
     this.code,
     this.name,
@@ -17,7 +17,7 @@ class ItemToAddInTransferOrderModel {
     this.textController,
   });
 
-  ItemToAddInTransferOrderModel.fromJson(Map<String, dynamic> json) {
+  ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     code = json['code'];
     name = json['name'];
