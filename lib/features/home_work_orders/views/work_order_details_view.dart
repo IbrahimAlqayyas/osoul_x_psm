@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:osoul_x_psm/core/logging/logging.dart';
 import 'package:osoul_x_psm/core/shared_widgets/base_scaffold.dart';
 import 'package:osoul_x_psm/core/shared_widgets/button_gradient.dart';
 import 'package:osoul_x_psm/core/shared_widgets/loading_indicator.dart';
@@ -104,13 +105,14 @@ class ItemLineWidget extends StatelessWidget {
   final String type;
 
   String _getAssetByType(String type) {
-    if (type == 'chicken') {
+    kLog('type: $type');
+    if (type == 'Chickens') {
       return 'assets/icons/chicken.png';
-    } else if (type == 'portions') {
-      return 'assets/icons/portions.png';
-    } else if (type == 'coby') {
+    } else if (type == 'Portions') {
+      return 'assets/icons/portions2.png';
+    } else if (type == 'Coby') {
       return 'assets/icons/coby.png';
-    } else if (type == 'marinated') {
+    } else if (type == 'Marinated') {
       return 'assets/icons/marinated.png';
     } else {
       return 'assets/logo.png';
