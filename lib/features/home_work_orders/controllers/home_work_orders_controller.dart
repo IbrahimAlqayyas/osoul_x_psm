@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:osoul_x_psm/core/network/services.dart';
 import 'package:osoul_x_psm/core/preferences/preferences.dart';
 import 'package:osoul_x_psm/features/auth/models/user_model.dart';
-import 'package:osoul_x_psm/features/home/models/work_order_model.dart';
+import 'package:osoul_x_psm/features/home_work_orders/models/work_order_model.dart';
 
 String? kDriverId;
 

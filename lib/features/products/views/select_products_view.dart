@@ -10,7 +10,7 @@ import 'package:osoul_x_psm/core/shared_widgets/loading_indicator.dart';
 import 'package:osoul_x_psm/core/shared_widgets/no_items_widget.dart';
 import 'package:osoul_x_psm/core/shared_widgets/padding.dart';
 import 'package:osoul_x_psm/core/theme/colors.dart';
-import 'package:osoul_x_psm/features/home/models/work_order_model.dart';
+import 'package:osoul_x_psm/features/home_work_orders/models/work_order_model.dart';
 import 'package:osoul_x_psm/features/products/controllers/products_controller.dart';
 import 'package:osoul_x_psm/features/products/models/product_model.dart';
 import 'package:osoul_x_psm/features/products/views/review_products_view.dart';
