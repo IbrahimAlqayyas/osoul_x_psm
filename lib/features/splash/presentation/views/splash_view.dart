@@ -23,19 +23,19 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   late Animation<double> _fadeAnimation;
 
   Future<void> startNavigation() async {
-    /// check for saved token
-    UserModel? savedUser = await Preferences().getSavedUser();
-    kLog('savedUser');
-    kLog(savedUser);
+    // /// check for saved token
+    // UserModel? savedUser = await Preferences().getSavedUser();
+    // kLog('savedUser');
+    // kLog(savedUser);
 
-    if (savedUser != null) {
-      Future.delayed(const Duration(seconds: 5), () => Get.to(() => HomeView()));
-    } else {
-      /// no saved login data
-      Future.delayed(const Duration(seconds: 5), () => Get.to(() => LoginView()));
-    }
+    // if (savedUser != null) {
+    //   Future.delayed(const Duration(seconds: 5), () => Get.to(() => HomeViewWorkOrders()));
+    // } else {
+    //   /// no saved login data
+    //   Future.delayed(const Duration(seconds: 5), () => Get.to(() => LoginView()));
+    // }
 
-    // Future.delayed(const Duration(seconds: 5), () => Get.to(() => LoginView()));
+    Future.delayed(const Duration(seconds: 5), () => Get.to(() => HomeViewWorkOrders()));
   }
 
   @override

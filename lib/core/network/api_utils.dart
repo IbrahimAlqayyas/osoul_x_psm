@@ -12,7 +12,7 @@ class ApiUtils {
   /// ///////////////////////////////////////////////////////////////////////////////////////////////////
 
   final String _stagingServerURL =
-      'https://9099462-sb1.restlets.api.netsuite.com/app/site/hosting/restlet.nl?deploy=1&script=';
+      'https://9099462.restlets.api.netsuite.com/app/site/hosting/restlet.nl?deploy=1&script=';
   final String _productionServerURL =
       'https://9099462.restlets.api.netsuite.com/app/site/hosting/restlet.nl?deploy=1&script=';
 

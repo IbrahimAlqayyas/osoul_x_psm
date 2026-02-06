@@ -3,6 +3,7 @@ import 'package:osoul_x_psm/core/network/api_client.dart';
 import 'package:osoul_x_psm/core/network/api_utils.dart';
 import 'package:osoul_x_psm/core/network/endpoints.dart';
 import 'package:osoul_x_psm/features/auth/models/user_model.dart';
+import 'package:osoul_x_psm/features/home/models/work_order_model.dart';
 import 'package:osoul_x_psm/features/products/models/product_model.dart';
 // import 'package:osoul_x_psm/features/collect/models/collect_orders_model.dart';
 // import 'package:osoul_x_psm/features/returns/models/return_listing_item.dart';
@@ -107,25 +108,25 @@ class Services {
     return returnValue;
   }
 
-  // Future<List<StockItemModel>?> getStockItems() async {
-  //   List<StockItemModel>? returnValue;
-  //   await ApiClient().request(
-  //     serviceName: 'get Stock Items',
-  //     requestType: RequestType.get,
-  //     uri: Endpoints().vanItemsListUri(),
-  //     printCurl: true,
-  //     headers: ApiUtils().headers(url: Endpoints().vanItemsListUri(), method: 'GET'),
-  //     onSuccess: (list) {
-  //       List<StockItemModel> stockItems = [];
-  //       for (var item in list) {
-  //         stockItems.add(StockItemModel.fromJson(item));
-  //       }
-  //       returnValue = stockItems;
-  //     },
-  //   );
+  Future<List<WorkOrderModel>?> getWorkOrders() async {
+    List<WorkOrderModel>? returnValue;
+    await ApiClient().request(
+      serviceName: 'get Work Orders',
+      requestType: RequestType.get,
+      uri: Endpoints().workOrdersUri(),
+      printCurl: true,
+      headers: ApiUtils().headers(url: Endpoints().workOrdersUri(), method: 'GET'),
+      onSuccess: (list) {
+        List<WorkOrderModel> workOrders = [];
+        for (var item in list) {
+          workOrders.add(WorkOrderModel.fromJson(item));
+        }
+        returnValue = workOrders;
+      },
+    );
 
-  //   return returnValue;
-  // }
+    return returnValue;
+  }
 
   // Future<List<TransferItemModel>?> getTransferOrders() async {
   //   List<TransferItemModel>? returnValue;

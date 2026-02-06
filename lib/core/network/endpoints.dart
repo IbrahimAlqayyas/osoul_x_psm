@@ -33,10 +33,10 @@ class Endpoints {
     return Uri.parse('${apiUtils.getBaseURL()}$scriptId&filtertext=$customerNameKeyword');
   }
 
-  // Uri transferOrderUri() {
-  //   final scriptId = _isStaging ? '1888' : '2017';
-  //   return Uri.parse('${apiUtils.getBaseURL()}$scriptId&driverid=$kDriverId');
-  // }
+  Uri workOrdersUri() {
+    final scriptId = _isStaging ? '2050' : '2050';
+    return Uri.parse('${apiUtils.getBaseURL()}$scriptId');
+  }
 
   // Uri transferOrderCreateUri() {
   //   final scriptId = _isStaging ? '1888' : '2017';

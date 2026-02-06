@@ -60,7 +60,7 @@ class LoginController extends GetxController {
             onPasswordReset: () async {
               await Preferences().saveUser(user);
               await saveEnvironment(kAppEnvironment!);
-              Get.offAll(() => HomeView());
+              Get.offAll(() => HomeViewWorkOrders());
             },
           ),
         );
@@ -68,7 +68,7 @@ class LoginController extends GetxController {
       } else {
         await Preferences().saveUser(user);
         await saveEnvironment(kAppEnvironment!);
-        Get.offAll(() => HomeView());
+        Get.offAll(() => HomeViewWorkOrders());
       }
     } else {
       showSnackBar(loginError.tr, type: SnackBarType.failure);

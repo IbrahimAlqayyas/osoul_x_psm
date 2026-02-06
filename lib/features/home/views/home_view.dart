@@ -18,8 +18,8 @@ import 'package:osoul_x_psm/main.dart';
 // import 'package:osoul_x_psm/features/sales/views/sales_view.dart';
 // import 'package:osoul_x_psm/features/stock/views/stock_view.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class HomeViewWorkOrders extends StatelessWidget {
+  const HomeViewWorkOrders({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +27,11 @@ class HomeView extends StatelessWidget {
       init: HomeController(),
       builder: (controller) {
         return BaseScaffold(
-          appBarHeight: 130,
-          appBarPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-          titleWidget: const UserGreetingHeader(),
-          isDrawerButton: true,
+          // appBarHeight: 130,
+          appBarPadding: const EdgeInsets.only(top: 24, bottom: 16),
+          // titleWidget: const UserGreetingHeader(),
+          title: 'Work Orders',
+          isDrawerButton: false,
           showBackButton: false,
           body: SizedBox(
             height: 200,
@@ -340,8 +341,6 @@ class WorkOrderItem extends StatelessWidget {
                     ),
                   ),
                   const VPadding(8),
-
-                  // Transaction ID
                   Row(
                     children: [
                       Text(
@@ -356,7 +355,34 @@ class WorkOrderItem extends StatelessWidget {
                       ),
                       const Spacer(),
                       Text(
-                        workOrderItem.id.toString() ?? 'F0365JYKA',
+                        workOrderItem.id ?? '- -',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: kPrimaryColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const VPadding(8),
+                  // Transaction ID
+                  Row(
+                    children: [
+                      Text(
+                        'Name',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: kPrimaryColor,
+                        ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        workOrderItem.values?.name ?? '- -',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
@@ -382,7 +408,7 @@ class WorkOrderItem extends StatelessWidget {
                       ),
                       const Spacer(),
                       Text(
-                        workOrderItem.productionDate ?? '03/02/2026',
+                        workOrderItem.values?.custrecordPsmFinishWoProductionDate ?? '- -',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
@@ -449,141 +475,141 @@ IconData getStatusIcon(String? status) {
   }
 }
 
-class UserGreetingHeader extends StatelessWidget {
-  const UserGreetingHeader({super.key});
+// class UserGreetingHeader extends StatelessWidget {
+//   const UserGreetingHeader({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: GetBuilder(
-        init: HomeController(),
-        builder: (controller) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              /// User info container
-              _userInfo(controller: controller),
+//   @override
+//   Widget build(BuildContext context) {
+//     return SafeArea(
+//       child: GetBuilder(
+//         init: HomeController(),
+//         builder: (controller) {
+//           return Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             crossAxisAlignment: CrossAxisAlignment.center,
+//             mainAxisSize: MainAxisSize.max,
+//             children: [
+//               /// User info container
+//               _userInfo(controller: controller),
 
-              /// Buttons
-              buildActionButton(
-                onTap: () {
-                  // Get.to(() => const NotificationView());
-                  Scaffold.of(context).openDrawer();
-                },
-                iconData: Icons.notes,
-                fillColor: kWhiteColor,
-              ),
-            ],
-          );
-        },
-      ),
-    );
-  }
+//               /// Buttons
+//               buildActionButton(
+//                 onTap: () {
+//                   // Get.to(() => const NotificationView());
+//                   Scaffold.of(context).openDrawer();
+//                 },
+//                 iconData: Icons.notes,
+//                 fillColor: kWhiteColor,
+//               ),
+//             ],
+//           );
+//         },
+//       ),
+//     );
+//   }
 
-  Widget _userInfo({required HomeController controller}) {
-    final user = controller.user;
+//   Widget _userInfo({required HomeController controller}) {
+//     final user = controller.user;
 
-    // final selectedWallet = user?.wallets?.firstWhereOrNull((e) => e.isSelected == true);
+//     // final selectedWallet = user?.wallets?.firstWhereOrNull((e) => e.isSelected == true);
 
-    return Container(
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16.0),
-        color: Colors.white.withAlpha(opacityToAlpha(0.1)),
-        border: Border.all(color: Colors.white.withAlpha(opacityToAlpha(0.1))),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//     return Container(
+//       padding: const EdgeInsets.all(8),
+//       decoration: BoxDecoration(
+//         borderRadius: BorderRadius.circular(16.0),
+//         color: Colors.white.withAlpha(opacityToAlpha(0.1)),
+//         border: Border.all(color: Colors.white.withAlpha(opacityToAlpha(0.1))),
+//       ),
+//       child: Row(
+//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            mainAxisSize: MainAxisSize.min,
+//         mainAxisSize: MainAxisSize.min,
+//         children: [
+//           Row(
+//             mainAxisSize: MainAxisSize.min,
 
-            children: [
-              SizedBox(
-                height: 48,
-                width: 60,
-                child: Stack(
-                  alignment: AlignmentDirectional.bottomStart,
-                  children: [
-                    Container(
-                      width: 48,
-                      height: 48,
-                      margin: const EdgeInsetsDirectional.only(start: 6),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                        border: Border.all(color: const Color(0xFF114362), width: 1.0),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(50),
-                        child: defaultUserImageNetwork(
-                          user?.picture ??
-                              'https://cdn-icons-png.flaticon.com/128/3135/3135715.png',
-                        ),
-                      ),
-                    ),
-                    // Align(
-                    //   alignment: AlignmentDirectional.bottomStart,
-                    //   child: Container(
-                    //     width: 28,
-                    //     height: 28,
-                    //     padding: const EdgeInsets.all(4),
-                    //     decoration: BoxDecoration(
-                    //       color: const Color(0xFFD4DDE3),
-                    //       shape: BoxShape.circle,
-                    //       border: Border.all(color: const Color(0xFF1A3A56), width: 2.0),
-                    //     ),
-                    //     child: Image.asset(
-                    //       'assets/icons/user_account_badge.png',
-                    //       fit: BoxFit.fill,
-                    //       width: 20,
-                    //       height: 20,
-                    //     ),
-                    //   ),
-                    // ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 8),
+//             children: [
+//               SizedBox(
+//                 height: 48,
+//                 width: 60,
+//                 child: Stack(
+//                   alignment: AlignmentDirectional.bottomStart,
+//                   children: [
+//                     Container(
+//                       width: 48,
+//                       height: 48,
+//                       margin: const EdgeInsetsDirectional.only(start: 6),
+//                       decoration: BoxDecoration(
+//                         shape: BoxShape.circle,
+//                         color: Colors.white,
+//                         border: Border.all(color: const Color(0xFF114362), width: 1.0),
+//                       ),
+//                       child: ClipRRect(
+//                         borderRadius: BorderRadius.circular(50),
+//                         child: defaultUserImageNetwork(
+//                           user?.picture ??
+//                               'https://cdn-icons-png.flaticon.com/128/3135/3135715.png',
+//                         ),
+//                       ),
+//                     ),
+//                     // Align(
+//                     //   alignment: AlignmentDirectional.bottomStart,
+//                     //   child: Container(
+//                     //     width: 28,
+//                     //     height: 28,
+//                     //     padding: const EdgeInsets.all(4),
+//                     //     decoration: BoxDecoration(
+//                     //       color: const Color(0xFFD4DDE3),
+//                     //       shape: BoxShape.circle,
+//                     //       border: Border.all(color: const Color(0xFF1A3A56), width: 2.0),
+//                     //     ),
+//                     //     child: Image.asset(
+//                     //       'assets/icons/user_account_badge.png',
+//                     //       fit: BoxFit.fill,
+//                     //       width: 20,
+//                     //       height: 20,
+//                     //     ),
+//                     //   ),
+//                     // ),
+//                   ],
+//                 ),
+//               ),
+//               const SizedBox(width: 8),
 
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '${hello.tr} ${user?.drivername ?? ''}',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      // fontFamily: kRoboto,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  Text(
-                    vanDriver.tr,
-                    style: const TextStyle(
-                      color: Color(0xFFF5A623),
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const HPadding(12),
-          const Icon(Icons.arrow_forward_ios_rounded, color: Color(0xFFF5A623), size: 16),
-        ],
-      ),
-    );
-  }
-}
+//               Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 children: [
+//                   Text(
+//                     '${hello.tr} ${user?.drivername ?? ''}',
+//                     style: const TextStyle(
+//                       color: Colors.white,
+//                       fontSize: 16,
+//                       fontWeight: FontWeight.w500,
+//                       // fontFamily: kRoboto,
+//                     ),
+//                     overflow: TextOverflow.ellipsis,
+//                   ),
+//                   Text(
+//                     vanDriver.tr,
+//                     style: const TextStyle(
+//                       color: Color(0xFFF5A623),
+//                       fontSize: 14,
+//                       fontWeight: FontWeight.w500,
+//                     ),
+//                     overflow: TextOverflow.ellipsis,
+//                   ),
+//                 ],
+//               ),
+//             ],
+//           ),
+//           const HPadding(12),
+//           const Icon(Icons.arrow_forward_ios_rounded, color: Color(0xFFF5A623), size: 16),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 Widget buildActionButton({
   required IconData iconData,
