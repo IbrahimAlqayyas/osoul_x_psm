@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:osoul_x_psm/core/constants/ui_constants.dart';
 import 'package:osoul_x_psm/core/localization/03_supported_locales.dart';
 import 'package:osoul_x_psm/core/theme/colors.dart';
 import 'package:osoul_x_psm/core/theme/text_styles.dart';
@@ -94,12 +93,13 @@ class BaseScaffold extends StatelessWidget {
           ),
 
           /// Main content area
-          Container(
-            height: getBodyHeight(appBarHeight: appBarHeight ?? kAppBarHeight),
-            width: double.infinity,
-            padding: applyPadding ? const EdgeInsets.only(top: 16, left: 16, right: 16) : null,
-            decoration: const BoxDecoration(color: kWhiteColor),
-            child: enableScroll ? SingleChildScrollView(child: body) : body,
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              padding: applyPadding ? const EdgeInsets.only(top: 16, left: 16, right: 16) : null,
+              decoration: const BoxDecoration(color: kWhiteColor),
+              child: enableScroll ? SingleChildScrollView(child: body) : body,
+            ),
           ),
         ],
       ),

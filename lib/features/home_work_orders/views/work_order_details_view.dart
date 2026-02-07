@@ -118,16 +118,38 @@ class WorkOrderDetailsView extends StatelessWidget {
               else if (controller.workOrderItemLine.isEmpty)
                 const Center(child: Text('No Data Found'))
               else
-                Flexible(
-                  child: ListView.builder(
-                    itemCount: controller.workOrderItemLine.length,
-                    itemBuilder: (context, index) {
-                      final workOrderItemLine = controller.workOrderItemLine[index];
-                      return ItemLineWidget(
-                        item: workOrderItemLine,
-                        controller: controller,
-                        type: type,
-                      );
+                Expanded(
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      return constraints.maxWidth > 600
+                          ? GridView.builder(
+                              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                                maxCrossAxisExtent: 500,
+                                mainAxisExtent: 150,
+                                crossAxisSpacing: 16,
+                                mainAxisSpacing: 16,
+                              ),
+                              itemCount: controller.workOrderItemLine.length,
+                              itemBuilder: (context, index) {
+                                final workOrderItemLine = controller.workOrderItemLine[index];
+                                return ItemLineWidget(
+                                  item: workOrderItemLine,
+                                  controller: controller,
+                                  type: type,
+                                );
+                              },
+                            )
+                          : ListView.builder(
+                              itemCount: controller.workOrderItemLine.length,
+                              itemBuilder: (context, index) {
+                                final workOrderItemLine = controller.workOrderItemLine[index];
+                                return ItemLineWidget(
+                                  item: workOrderItemLine,
+                                  controller: controller,
+                                  type: type,
+                                );
+                              },
+                            );
                     },
                   ),
                 ),

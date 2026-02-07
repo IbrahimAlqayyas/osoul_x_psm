@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:osoul_x_psm/core/constants/ui_constants.dart';
 import 'package:osoul_x_psm/core/localization/01_translation_keys.dart';
 import 'package:osoul_x_psm/core/shared_widgets/base_scaffold.dart';
 import 'package:get/get.dart';
@@ -129,33 +128,49 @@ class ProductsView extends StatelessWidget {
                       ),
 
                       // Available Items Section
-                      Column(
-                        children: [
-                          controller.nonSelectedProducts.isEmpty
-                              ? Center(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(32),
-                                    child: Text(
-                                      allProductsSelected.tr,
-                                      style: TextStyle(fontSize: 16, color: kMutedTextColor),
-                                    ),
-                                  ),
-                                )
-                              : SizedBox(
-                                  height: getBodyHeight() - 136,
-                                  child: ListView.builder(
-                                    // padding: const EdgeInsets.all(16),
-                                    itemCount: controller.nonSelectedProducts.length,
-                                    itemBuilder: (context, index) {
-                                      return ProductToReviewWidget(
-                                        item: controller.nonSelectedProducts[index],
-                                        controller: controller,
-                                        isSelected: false,
-                                      );
-                                    },
+                      Expanded(
+                        child: controller.nonSelectedProducts.isEmpty
+                            ? Center(
+                                child: Padding(
+                                  padding: EdgeInsets.all(32),
+                                  child: Text(
+                                    allProductsSelected.tr,
+                                    style: TextStyle(fontSize: 16, color: kMutedTextColor),
                                   ),
                                 ),
-                        ],
+                              )
+                            : LayoutBuilder(
+                                builder: (context, constraints) {
+                                  return constraints.maxWidth > 600
+                                      ? GridView.builder(
+                                          gridDelegate:
+                                              const SliverGridDelegateWithMaxCrossAxisExtent(
+                                                maxCrossAxisExtent: 500,
+                                                mainAxisExtent: 180,
+                                                crossAxisSpacing: 16,
+                                                mainAxisSpacing: 16,
+                                              ),
+                                          itemCount: controller.nonSelectedProducts.length,
+                                          itemBuilder: (context, index) {
+                                            return ProductToReviewWidget(
+                                              item: controller.nonSelectedProducts[index],
+                                              controller: controller,
+                                              isSelected: false,
+                                            );
+                                          },
+                                        )
+                                      : ListView.builder(
+                                          itemCount: controller.nonSelectedProducts.length,
+                                          itemBuilder: (context, index) {
+                                            return ProductToReviewWidget(
+                                              item: controller.nonSelectedProducts[index],
+                                              controller: controller,
+                                              isSelected: false,
+                                            );
+                                          },
+                                        );
+                                },
+                              ),
                       ),
                     ],
                   ),

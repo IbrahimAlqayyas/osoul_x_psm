@@ -24,239 +24,59 @@ class HomeViewWorkOrders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeWorkOrdersController>(
-      init: HomeWorkOrdersController(),
-      builder: (controller) {
-        return BaseScaffold(
-          // appBarHeight: 130,
-          appBarPadding: const EdgeInsets.only(top: 24, bottom: 16),
-          // titleWidget: const UserGreetingHeader(),
-          title: 'Work Orders',
-          isDrawerButton: false,
-          showBackButton: false,
-          body: SizedBox(
-            height: 200,
-            width: 200,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // Text('Work Orders'),
-                // const VPadding(16),
-                Flexible(
-                  child: ListView.builder(
-                    // crossAxisCount: 2,
-                    // crossAxisSpacing: 16,
-                    // mainAxisSpacing: 16,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          showMyDialog(
-                            GetBuilder(
-                              init: HomeWorkOrdersController(),
-                              // init: AddEditTransferOrderController(),
-                              builder: (controller) {
-                                // bool hasFrozenItems =
-                                //     Get.find<HomeController>().user?.hasFrozenItems ?? false;
-                                // bool hasFreshItems =
-                                //     Get.find<HomeController>().user?.hasFreshItems ?? false;
-
-                                return SizedBox(
-                                  width: Get.width,
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        'Choose Category',
-                                        style: Get.textTheme.titleMedium?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      const VPadding(16),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          // if (hasFreshItems)
-                                          Expanded(
-                                            child: MyCategoryButton(
-                                              onTap: () {
-                                                // controller.isFrozen = false;
-                                                // kLog(controller.isFrozen);
-                                                // controller.getItemsToAddInTransferOrder();
-                                                // Get.to(
-                                                //   () => ProductsView(
-                                                //     filterText: 'Chickens',
-                                                //     workOrder: controller.workOrders[index],
-                                                //   ),
-                                                // );
-                                                controller.selectedType = 'Chickens';
-                                                controller.selectedWorkOrderId = controller
-                                                    .workOrders[index]
-                                                    .values!
-                                                    .internalid![0]
-                                                    .value!;
-                                                Get.to(
-                                                  () => WorkOrderDetailsView(
-                                                    type: 'Chickens',
-                                                    workOrder: controller.workOrders[index],
-                                                  ),
-                                                );
-                                              },
-                                              assetPath: 'assets/icons/chicken.png',
-                                              title: 'Chickens',
-                                            ),
-                                          ),
-                                          // if (hasFreshItems && hasFrozenItems)
-                                          const HPadding(16),
-                                          // if (hasFrozenItems)
-                                          Expanded(
-                                            child: MyCategoryButton(
-                                              onTap: () {
-                                                // controller.isFrozen = true;
-                                                // kLog(controller.isFrozen);
-                                                // controller.getItemsToAddInTransferOrder();
-                                                // Get.to(
-                                                //   () => ProductsView(
-                                                //     filterText: 'Portions',
-                                                //     workOrder: controller.workOrders[index],
-                                                //   ),
-                                                // );
-                                                controller.selectedType = 'Portions';
-                                                controller.selectedWorkOrderId = controller
-                                                    .workOrders[index]
-                                                    .values!
-                                                    .internalid![0]
-                                                    .value!;
-                                                Get.to(
-                                                  () => WorkOrderDetailsView(
-                                                    type: 'Portions',
-                                                    workOrder: controller.workOrders[index],
-                                                  ),
-                                                );
-                                              },
-                                              assetPath: 'assets/icons/portions2.png',
-                                              title: 'Portions',
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const VPadding(16),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          // if (hasFreshItems)
-                                          Expanded(
-                                            child: MyCategoryButton(
-                                              onTap: () {
-                                                // controller.isFrozen = false;
-                                                // kLog(controller.isFrozen);
-                                                // controller.getItemsToAddInTransferOrder();
-                                                controller.selectedType = 'Coby';
-                                                controller.selectedWorkOrderId = controller
-                                                    .workOrders[index]
-                                                    .values!
-                                                    .internalid![0]
-                                                    .value!;
-                                                Get.to(
-                                                  () => WorkOrderDetailsView(
-                                                    type: 'Coby',
-                                                    workOrder: controller.workOrders[index],
-                                                  ),
-                                                );
-                                              },
-                                              assetPath: 'assets/icons/coby.png',
-                                              title: 'Co-by',
-                                            ),
-                                          ),
-                                          // if (hasFreshItems && hasFrozenItems)
-                                          const HPadding(16),
-                                          // if (hasFrozenItems)
-                                          Expanded(
-                                            child: MyCategoryButton(
-                                              onTap: () {
-                                                // controller.isFrozen = true;
-                                                // kLog(controller.isFrozen);
-                                                // controller.getItemsToAddInTransferOrder();
-                                                controller.selectedType = 'Marinated';
-                                                controller.selectedWorkOrderId = controller
-                                                    .workOrders[index]
-                                                    .values!
-                                                    .internalid![0]
-                                                    .value!;
-                                                Get.to(
-                                                  () => WorkOrderDetailsView(
-                                                    type: 'Marinated',
-                                                    workOrder: controller.workOrders[index],
-                                                  ),
-                                                );
-                                              },
-                                              assetPath: 'assets/icons/marinated.png',
-                                              title: 'Marinated',
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                            ),
-                          );
-                        },
-                        child: WorkOrderItem(workOrderItem: controller.workOrders[index]),
-                      );
-                    },
-                    itemCount: controller.workOrders.length,
-                    // children: [
-                    // _buildFeatureButton(
-                    //   title: transferOrdersTitle.tr,
-                    //   // subtitle: 'Loading Requests',
-                    //   icon: Icons.local_shipping_outlined,
-                    //   onTap: () {},
-                    //   gradient: getCardGradient(0),
-                    // ),
-                    // _buildFeatureButton(
-                    //   title: salesTitle.tr,
-                    //   // subtitle: 'Sales',
-                    //   icon: Icons.shopping_cart_outlined,
-                    //   onTap: () {},
-                    //   gradient: getCardGradient(1),
-                    // ),
-                    // _buildFeatureButton(
-                    //   title: inventoryTitle.tr,
-                    //   // subtitle: 'Stock',
-                    //   icon: Icons.assignment_return_outlined,
-                    //   onTap: () {},
-                    //   gradient: getCardGradient(2),
-                    // ),
-                    // _buildFeatureButton(
-                    //   title: returnsTitle.tr,
-                    //   // subtitle: 'Refunds',
-                    //   icon: Icons.refresh_outlined,
-                    //   onTap: () {},
-                    //   gradient: getCardGradient(3),
-                    // ),
-                    // _buildFeatureButton(
-                    //   title: collectTitle.tr,
-                    //   // subtitle: 'Refunds',
-                    //   icon: Icons.dataset_outlined,
-                    //   onTap: () {},
-                    //   gradient: getCardGradient(6),
-                    // ),
-
-                    // _buildFeatureButton(
-                    //   title: 'المرتجعات',
-                    //   // subtitle: 'Refunds',
-                    //   icon: Icons.assignment_return,
-                    //   onTap: () => Get.to(() => const RefundsView()),
-                    //   gradient: getCardGradient(4),
-                    // ),
-                    // ],
-                  ),
-                ),
-              ],
-            ),
+    return BaseScaffold(
+      isDrawerButton: false,
+      // appBarHeight: 130,
+      appBarPadding: const EdgeInsets.only(top: 24, bottom: 16),
+      // titleWidget: const UserGreetingHeader(),
+      titleWidget: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          buildActionButton(
+            onTap: () {
+              // Get.to(() => const NotificationView());
+              Scaffold.of(context).openDrawer();
+            },
+            iconData: Icons.notes,
+            fillColor: kWhiteColor,
           ),
-        );
-      },
+          Text('Work Orders', style: Get.textTheme.titleMedium?.copyWith(color: kWhiteColor)),
+
+          SizedBox(width: 16),
+        ],
+      ),
+      showBackButton: false,
+      body: GetBuilder(
+        init: HomeWorkOrdersController(),
+        builder: (controller) {
+          return LayoutBuilder(
+            builder: (context, constraints) {
+              return Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: constraints.maxWidth > 600
+                    ? GridView.builder(
+                        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: 500,
+                          mainAxisExtent: 150,
+                          crossAxisSpacing: 16,
+                          mainAxisSpacing: 16,
+                        ),
+                        itemCount: controller.workOrders.length,
+                        itemBuilder: (context, index) =>
+                            _buildWorkOrderItem(context, controller, index),
+                      )
+                    : ListView.builder(
+                        itemCount: controller.workOrders.length,
+                        itemBuilder: (context, index) => Padding(
+                          padding: const EdgeInsets.only(bottom: 12.0),
+                          child: _buildWorkOrderItem(context, controller, index),
+                        ),
+                      ),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 
@@ -308,6 +128,113 @@ class HomeViewWorkOrders extends StatelessWidget {
   //     ),
   //   );
   // }
+  Widget _buildWorkOrderItem(BuildContext context, HomeWorkOrdersController controller, int index) {
+    return GestureDetector(
+      onTap: () {
+        showMyDialog(
+          GetBuilder(
+            init: HomeWorkOrdersController(),
+            builder: (controller) {
+              return SizedBox(
+                width: Get.width,
+                child: Column(
+                  children: [
+                    Text(
+                      'Choose Category',
+                      style: Get.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    const VPadding(16),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: MyCategoryButton(
+                            onTap: () {
+                              controller.selectedType = 'Chickens';
+                              controller.selectedWorkOrderId =
+                                  controller.workOrders[index].values!.internalid![0].value!;
+                              Get.to(
+                                () => WorkOrderDetailsView(
+                                  type: 'Chickens',
+                                  workOrder: controller.workOrders[index],
+                                ),
+                              );
+                            },
+                            assetPath: 'assets/icons/chicken.png',
+                            title: 'Chickens',
+                          ),
+                        ),
+                        const HPadding(16),
+                        Expanded(
+                          child: MyCategoryButton(
+                            onTap: () {
+                              controller.selectedType = 'Portions';
+                              controller.selectedWorkOrderId =
+                                  controller.workOrders[index].values!.internalid![0].value!;
+                              Get.to(
+                                () => WorkOrderDetailsView(
+                                  type: 'Portions',
+                                  workOrder: controller.workOrders[index],
+                                ),
+                              );
+                            },
+                            assetPath: 'assets/icons/portions2.png',
+                            title: 'Portions',
+                          ),
+                        ),
+                      ],
+                    ),
+                    const VPadding(16),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: MyCategoryButton(
+                            onTap: () {
+                              controller.selectedType = 'Coby';
+                              controller.selectedWorkOrderId =
+                                  controller.workOrders[index].values!.internalid![0].value!;
+                              Get.to(
+                                () => WorkOrderDetailsView(
+                                  type: 'Coby',
+                                  workOrder: controller.workOrders[index],
+                                ),
+                              );
+                            },
+                            assetPath: 'assets/icons/coby.png',
+                            title: 'Co-by',
+                          ),
+                        ),
+                        const HPadding(16),
+                        Expanded(
+                          child: MyCategoryButton(
+                            onTap: () {
+                              controller.selectedType = 'Marinated';
+                              controller.selectedWorkOrderId =
+                                  controller.workOrders[index].values!.internalid![0].value!;
+                              Get.to(
+                                () => WorkOrderDetailsView(
+                                  type: 'Marinated',
+                                  workOrder: controller.workOrders[index],
+                                ),
+                              );
+                            },
+                            assetPath: 'assets/icons/marinated.png',
+                            title: 'Marinated',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        );
+      },
+      child: WorkOrderItem(workOrderItem: controller.workOrders[index]),
+    );
+  }
 }
 
 class WorkOrderItem extends StatelessWidget {

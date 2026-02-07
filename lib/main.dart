@@ -19,7 +19,7 @@ void main() async {
   await initializeEnvironment(); // Initialize environment before anything else
   await LocalizationService().initialize();
   await AppVersion.init();
-  disableLandscapeOrientation();
+  // disableLandscapeOrientation();
   removeStatusBarColor();
   // Preferences().clear();
   runApp(const MyApp());
