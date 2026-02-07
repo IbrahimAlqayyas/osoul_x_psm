@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:osoul_x_psm/core/constants/ui_constants.dart';
 import 'package:osoul_x_psm/core/localization/01_translation_keys.dart';
+import 'package:osoul_x_psm/core/localization/04_localization_service.dart';
 import 'package:osoul_x_psm/core/shared_widgets/base_scaffold.dart';
 import 'package:osoul_x_psm/core/shared_widgets/button_rounded.dart';
 import 'package:osoul_x_psm/core/shared_widgets/image_default.dart';
@@ -11,6 +12,7 @@ import 'package:osoul_x_psm/core/theme/colors.dart';
 // import 'package:osoul_x_psm/features/collect/views/collect_view.dart';
 import 'package:osoul_x_psm/features/home_work_orders/controllers/home_work_orders_controller.dart';
 import 'package:osoul_x_psm/features/home_work_orders/models/work_order_model.dart';
+import 'package:osoul_x_psm/features/home_work_orders/views/drawer.dart';
 import 'package:osoul_x_psm/features/home_work_orders/views/work_order_details_view.dart';
 import 'package:osoul_x_psm/features/products/views/products_view.dart';
 import 'package:osoul_x_psm/main.dart';
@@ -25,25 +27,37 @@ class HomeViewWorkOrders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
-      isDrawerButton: false,
+      isDrawerButton: true,
       // appBarHeight: 130,
       appBarPadding: const EdgeInsets.only(top: 24, bottom: 16),
       // titleWidget: const UserGreetingHeader(),
-      titleWidget: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          buildActionButton(
-            onTap: () {
-              // Get.to(() => const NotificationView());
-              Scaffold.of(context).openDrawer();
-            },
-            iconData: Icons.notes,
-            fillColor: kWhiteColor,
-          ),
-          Text('Work Orders', style: Get.textTheme.titleMedium?.copyWith(color: kWhiteColor)),
+      titleWidget: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(width: 24),
 
-          SizedBox(width: 16),
-        ],
+            Text('Work Orders', style: Get.textTheme.titleMedium?.copyWith(color: kWhiteColor)),
+            buildActionButton(
+              onTap: () {
+                // Get.to(() => const NotificationView());
+                // Scaffold.of(context).openDrawer();
+                showLanguageSelectionDialog(
+                  onLanguageChanged: (locale) async {
+                    /// update user language of push notifications
+                    // await Get.find<HomeController>().updateUserPreferences(
+                    //   body: {'language': locale.toString()},
+                    // );
+                    await LocalizationService().setLocale(locale);
+                  },
+                );
+              },
+              iconData: Icons.language,
+              fillColor: kWhiteColor,
+            ),
+          ],
+        ),
       ),
       showBackButton: false,
       body: GetBuilder(
