@@ -807,6 +807,15 @@ class AppTranslations extends Translations {
       open: 'open',
       cannotCollectThisOrder: 'Cannot collect this order',
       paidInFull: 'Paid In Full',
+
+      workOrdersTitle: 'Work Orders',
+      chooseCategory: 'Choose Category',
+      chickensCategory: 'Chickens',
+      portionsCategory: 'Portions',
+      cobyCategory: 'Co-by',
+      marinatedCategory: 'Marinated',
+      workOrderLabel: 'Work Order',
+      productionDateLabel: 'Production Date',
     },
 
     /// /////////////////////////////////////////////////////////////////////
@@ -1607,6 +1616,15 @@ class AppTranslations extends Translations {
       open: 'مفتوح',
       cannotCollectThisOrder: 'لا يمكن تحصيل هذا الطلب',
       paidInFull: 'تم التحصيل',
+
+      workOrdersTitle: 'فواتير العمل',
+      chooseCategory: 'اختر الفئة',
+      chickensCategory: 'الدواجن',
+      portionsCategory: 'الأجزاء',
+      cobyCategory: 'كوبي',
+      marinatedCategory: 'المتبل',
+      workOrderLabel: 'فاتورة العمل',
+      productionDateLabel: 'تاريخ الإنتاج',
     },
   };
 }

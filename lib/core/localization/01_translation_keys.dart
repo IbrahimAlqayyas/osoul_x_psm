@@ -807,3 +807,12 @@ const collectLabel = 'collectLabel';
 const open = 'open';
 const cannotCollectThisOrder = 'cannotCollectThisOrder';
 const paidInFull = 'paidInFull';
+
+const workOrdersTitle = 'workOrdersTitle';
+const chooseCategory = 'chooseCategory';
+const chickensCategory = 'chickensCategory';
+const portionsCategory = 'portionsCategory';
+const cobyCategory = 'cobyCategory';
+const marinatedCategory = 'marinatedCategory';
+const workOrderLabel = 'workOrderLabel';
+const productionDateLabel = 'productionDateLabel';

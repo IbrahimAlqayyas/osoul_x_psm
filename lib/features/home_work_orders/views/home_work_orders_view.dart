@@ -38,7 +38,10 @@ class HomeViewWorkOrders extends StatelessWidget {
           children: [
             SizedBox(width: 24),
 
-            Text('Work Orders', style: Get.textTheme.titleMedium?.copyWith(color: kWhiteColor)),
+            Text(
+              workOrdersTitle.tr,
+              style: Get.textTheme.titleMedium?.copyWith(color: kWhiteColor),
+            ),
             buildActionButton(
               onTap: () {
                 // Get.to(() => const NotificationView());
@@ -154,7 +157,7 @@ class HomeViewWorkOrders extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      'Choose Category',
+                      chooseCategory.tr,
                       style: Get.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                     ),
                     const VPadding(16),
@@ -175,7 +178,7 @@ class HomeViewWorkOrders extends StatelessWidget {
                               );
                             },
                             assetPath: 'assets/icons/chicken.png',
-                            title: 'Chickens',
+                            title: chickensCategory.tr,
                           ),
                         ),
                         const HPadding(16),
@@ -193,7 +196,7 @@ class HomeViewWorkOrders extends StatelessWidget {
                               );
                             },
                             assetPath: 'assets/icons/portions2.png',
-                            title: 'Portions',
+                            title: portionsCategory.tr,
                           ),
                         ),
                       ],
@@ -216,7 +219,7 @@ class HomeViewWorkOrders extends StatelessWidget {
                               );
                             },
                             assetPath: 'assets/icons/coby.png',
-                            title: 'Co-by',
+                            title: cobyCategory.tr,
                           ),
                         ),
                         const HPadding(16),
@@ -234,7 +237,7 @@ class HomeViewWorkOrders extends StatelessWidget {
                               );
                             },
                             assetPath: 'assets/icons/marinated.png',
-                            title: 'Marinated',
+                            title: marinatedCategory.tr,
                           ),
                         ),
                       ],
@@ -309,7 +312,7 @@ class WorkOrderItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Work Order',
+                    workOrderLabel.tr,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
@@ -322,7 +325,7 @@ class WorkOrderItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'ID',
+                        idLabel.tr,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
@@ -349,7 +352,7 @@ class WorkOrderItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'Name',
+                        nameLabel.tr,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
@@ -375,7 +378,7 @@ class WorkOrderItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'Production Date',
+                        productionDateLabel.tr,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
