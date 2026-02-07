@@ -1409,7 +1409,7 @@ class AppTranslations extends Translations {
       confirmAction: 'تأكيد العملية',
 
       // Transaction dialog field labels
-      idLabel: 'المعرف',
+      idLabel: 'رقم',
       descriptionLabel: 'الوصف',
       vendorLabel: 'التاجر',
       venueLabel: 'المكان',
@@ -1617,13 +1617,13 @@ class AppTranslations extends Translations {
       cannotCollectThisOrder: 'لا يمكن تحصيل هذا الطلب',
       paidInFull: 'تم التحصيل',
 
-      workOrdersTitle: 'فواتير العمل',
+      workOrdersTitle: 'طلبات العمل',
       chooseCategory: 'اختر الفئة',
-      chickensCategory: 'الدواجن',
-      portionsCategory: 'الأجزاء',
-      cobyCategory: 'كوبي',
-      marinatedCategory: 'المتبل',
-      workOrderLabel: 'فاتورة العمل',
+      chickensCategory: 'دجاجة كاملة',
+      portionsCategory: 'أجزاء',
+      cobyCategory: 'أنصاف',
+      marinatedCategory: 'متبلة',
+      workOrderLabel: 'طلب عمل',
       productionDateLabel: 'تاريخ الإنتاج',
     },
   };
