@@ -83,6 +83,8 @@ void disableLandscapeOrientation() {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
   ]);
 }
 
@@ -99,9 +101,9 @@ void removeStatusBarColor() {
     ),
   );
 
-  // Also set the preferred orientations to ensure consistent behavior
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
+  // // Also set the preferred orientations to ensure consistent behavior
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  //   DeviceOrientation.portraitDown,
+  // ]);
 }
