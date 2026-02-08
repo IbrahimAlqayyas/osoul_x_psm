@@ -68,27 +68,20 @@ class HomeViewWorkOrders extends StatelessWidget {
         builder: (controller) {
           return LayoutBuilder(
             builder: (context, constraints) {
-              return Padding(
+              return Container(
+                width: Get.width,
+                // color: kRedColor,
                 padding: const EdgeInsets.all(16.0),
-                child: constraints.maxWidth > 600
-                    ? GridView.builder(
-                        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                          maxCrossAxisExtent: 500,
-                          mainAxisExtent: 150,
-                          crossAxisSpacing: 16,
-                          mainAxisSpacing: 16,
-                        ),
-                        itemCount: controller.workOrders.length,
-                        itemBuilder: (context, index) =>
-                            _buildWorkOrderItem(context, controller, index),
-                      )
-                    : ListView.builder(
-                        itemCount: controller.workOrders.length,
-                        itemBuilder: (context, index) => Padding(
-                          padding: const EdgeInsets.only(bottom: 12.0),
-                          child: _buildWorkOrderItem(context, controller, index),
-                        ),
-                      ),
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 400,
+                    mainAxisExtent: 160,
+                    crossAxisSpacing: 16,
+                    mainAxisSpacing: 16,
+                  ),
+                  itemCount: controller.workOrders.length,
+                  itemBuilder: (context, index) => _buildWorkOrderItem(context, controller, index),
+                ),
               );
             },
           );
