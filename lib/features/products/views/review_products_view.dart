@@ -72,25 +72,27 @@ class ProductsSelectionReviewView extends StatelessWidget {
                   ],
                 ),
               ),
+              const VPadding(16),
 
               // Selected Items List
               SizedBox(
                 height: getBodyHeight() - 162,
                 child: GetBuilder<ProductsController>(
-                  builder: (controller) => ListView.builder(
+                  builder: (controller) => GridView.builder(
+                    padding: const EdgeInsets.only(bottom: 350),
+                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 400,
+                      mainAxisExtent: 220,
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 16,
+                    ),
                     itemCount: controller.selectedProducts.length,
                     itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          ItemToAddInTransferOrderWidget(
-                            item: controller.selectedProducts[index],
-                            controller: controller,
-                            isSelected: true,
-                            isEdit: false,
-                          ),
-
-                          if (index == controller.selectedProducts.length - 1) const VPadding(350),
-                        ],
+                      return ProductInReviewWidget(
+                        item: controller.selectedProducts[index],
+                        controller: controller,
+                        isSelected: true,
+                        isEdit: false,
                       );
                     },
                   ),
@@ -112,8 +114,8 @@ class ProductsSelectionReviewView extends StatelessWidget {
   }
 }
 
-class ItemToAddInTransferOrderWidget extends StatelessWidget {
-  const ItemToAddInTransferOrderWidget({
+class ProductInReviewWidget extends StatelessWidget {
+  const ProductInReviewWidget({
     super.key,
     required this.item,
     required this.controller,
@@ -130,7 +132,7 @@ class ItemToAddInTransferOrderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(12),
-      margin: const EdgeInsets.only(bottom: 12),
+      // margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
         color: kWhiteColor,
         borderRadius: BorderRadius.circular(16),
@@ -157,6 +159,7 @@ class ItemToAddInTransferOrderWidget extends StatelessWidget {
               ],
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -127,6 +127,7 @@ class ProductsView extends StatelessWidget {
                         },
                       ),
 
+                      const VPadding(16),
                       // Available Items Section
                       Expanded(
                         child: controller.nonSelectedProducts.isEmpty
@@ -139,36 +140,21 @@ class ProductsView extends StatelessWidget {
                                   ),
                                 ),
                               )
-                            : LayoutBuilder(
-                                builder: (context, constraints) {
-                                  return constraints.maxWidth > 600
-                                      ? GridView.builder(
-                                          gridDelegate:
-                                              const SliverGridDelegateWithMaxCrossAxisExtent(
-                                                maxCrossAxisExtent: 500,
-                                                mainAxisExtent: 180,
-                                                crossAxisSpacing: 16,
-                                                mainAxisSpacing: 16,
-                                              ),
-                                          itemCount: controller.nonSelectedProducts.length,
-                                          itemBuilder: (context, index) {
-                                            return ProductToReviewWidget(
-                                              item: controller.nonSelectedProducts[index],
-                                              controller: controller,
-                                              isSelected: false,
-                                            );
-                                          },
-                                        )
-                                      : ListView.builder(
-                                          itemCount: controller.nonSelectedProducts.length,
-                                          itemBuilder: (context, index) {
-                                            return ProductToReviewWidget(
-                                              item: controller.nonSelectedProducts[index],
-                                              controller: controller,
-                                              isSelected: false,
-                                            );
-                                          },
-                                        );
+                            : GridView.builder(
+                                padding: const EdgeInsets.only(bottom: 100),
+                                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                                  maxCrossAxisExtent: 350,
+                                  mainAxisExtent: 180,
+                                  crossAxisSpacing: 16,
+                                  mainAxisSpacing: 16,
+                                ),
+                                itemCount: controller.nonSelectedProducts.length,
+                                itemBuilder: (context, index) {
+                                  return ProductItemWidget(
+                                    item: controller.nonSelectedProducts[index],
+                                    controller: controller,
+                                    isSelected: false,
+                                  );
                                 },
                               ),
                       ),
@@ -181,8 +167,8 @@ class ProductsView extends StatelessWidget {
   }
 }
 
-class ProductToReviewWidget extends StatelessWidget {
-  const ProductToReviewWidget({
+class ProductItemWidget extends StatelessWidget {
+  const ProductItemWidget({
     super.key,
     required this.item,
     required this.controller,
@@ -197,7 +183,7 @@ class ProductToReviewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(12),
-      margin: const EdgeInsets.only(bottom: 12),
+      // margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
         color: kWhiteColor,
         borderRadius: BorderRadius.circular(16),

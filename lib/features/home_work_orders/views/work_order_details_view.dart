@@ -124,7 +124,7 @@ class WorkOrderDetailsView extends StatelessWidget {
                       return constraints.maxWidth > 600
                           ? GridView.builder(
                               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                                maxCrossAxisExtent: 500,
+                                maxCrossAxisExtent: 350,
                                 mainAxisExtent: 150,
                                 crossAxisSpacing: 16,
                                 mainAxisSpacing: 16,
@@ -143,10 +143,13 @@ class WorkOrderDetailsView extends StatelessWidget {
                               itemCount: controller.workOrderItemLine.length,
                               itemBuilder: (context, index) {
                                 final workOrderItemLine = controller.workOrderItemLine[index];
-                                return ItemLineWidget(
-                                  item: workOrderItemLine,
-                                  controller: controller,
-                                  type: type,
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 12),
+                                  child: ItemLineWidget(
+                                    item: workOrderItemLine,
+                                    controller: controller,
+                                    type: type,
+                                  ),
                                 );
                               },
                             );
@@ -192,7 +195,7 @@ class ItemLineWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(12),
-      margin: const EdgeInsets.only(bottom: 12),
+      // margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
         color: kWhiteColor,
         borderRadius: BorderRadius.circular(16),
