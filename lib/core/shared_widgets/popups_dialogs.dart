@@ -168,9 +168,14 @@ class DialogWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       backgroundColor: Colors.transparent,
+      insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
       child: Container(
-        height: height?.toDouble() ?? Get.width - 50,
-        width: width?.toDouble() ?? Get.width - 50,
+        constraints: BoxConstraints(
+          minWidth: 280,
+          maxWidth: width?.toDouble() ?? 400,
+          minHeight: height?.toDouble() ?? 0,
+          maxHeight: height?.toDouble() ?? double.infinity,
+        ),
         decoration: BoxDecoration(
           color: kWhiteColor,
           borderRadius: BorderRadius.circular(20),
@@ -186,7 +191,7 @@ class DialogWidget extends StatelessWidget {
         padding: applyPadding
             ? const EdgeInsets.symmetric(horizontal: 24, vertical: 24)
             : EdgeInsets.zero,
-        child: child,
+        child: SingleChildScrollView(child: child),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:osoul_x_psm/core/logging/logging.dart';
 import 'package:osoul_x_psm/core/shared_widgets/base_scaffold.dart';
@@ -122,13 +123,11 @@ class WorkOrderDetailsView extends StatelessWidget {
                   child: LayoutBuilder(
                     builder: (context, constraints) {
                       return constraints.maxWidth > 600
-                          ? GridView.builder(
-                              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                                maxCrossAxisExtent: 350,
-                                mainAxisExtent: 150,
-                                crossAxisSpacing: 16,
-                                mainAxisSpacing: 16,
-                              ),
+                          ? MasonryGridView.count(
+                              padding: const EdgeInsets.only(bottom: 100),
+                              crossAxisCount: (constraints.maxWidth / 400).ceil(),
+                              crossAxisSpacing: 16,
+                              mainAxisSpacing: 16,
                               itemCount: controller.workOrderItemLine.length,
                               itemBuilder: (context, index) {
                                 final workOrderItemLine = controller.workOrderItemLine[index];
@@ -143,13 +142,10 @@ class WorkOrderDetailsView extends StatelessWidget {
                               itemCount: controller.workOrderItemLine.length,
                               itemBuilder: (context, index) {
                                 final workOrderItemLine = controller.workOrderItemLine[index];
-                                return Padding(
-                                  padding: const EdgeInsets.only(bottom: 12),
-                                  child: ItemLineWidget(
-                                    item: workOrderItemLine,
-                                    controller: controller,
-                                    type: type,
-                                  ),
+                                return ItemLineWidget(
+                                  item: workOrderItemLine,
+                                  controller: controller,
+                                  type: type,
                                 );
                               },
                             );

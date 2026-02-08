@@ -142,11 +142,12 @@ class HomeViewWorkOrders extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         showMyDialog(
+          // height: Get.height > 300 ? Get.height * 0.5 : Get.height,
+          // width: Get.width > 300 ? Get.width * 0.5 : Get.width,
           GetBuilder(
             init: HomeWorkOrdersController(),
             builder: (controller) {
               return SizedBox(
-                width: Get.width,
                 child: Column(
                   children: [
                     Text(

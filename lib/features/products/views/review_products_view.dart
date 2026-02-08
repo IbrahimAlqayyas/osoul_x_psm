@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter/services.dart';
 import 'package:osoul_x_psm/core/constants/ui_constants.dart';
 import 'package:osoul_x_psm/core/localization/01_translation_keys.dart';
@@ -78,21 +79,22 @@ class ProductsSelectionReviewView extends StatelessWidget {
               SizedBox(
                 height: getBodyHeight() - 162,
                 child: GetBuilder<ProductsController>(
-                  builder: (controller) => GridView.builder(
-                    padding: const EdgeInsets.only(bottom: 350),
-                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 400,
-                      mainAxisExtent: 220,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
-                    ),
-                    itemCount: controller.selectedProducts.length,
-                    itemBuilder: (context, index) {
-                      return ProductInReviewWidget(
-                        item: controller.selectedProducts[index],
-                        controller: controller,
-                        isSelected: true,
-                        isEdit: false,
+                  builder: (controller) => LayoutBuilder(
+                    builder: (context, constraints) {
+                      return MasonryGridView.count(
+                        padding: const EdgeInsets.only(bottom: 350),
+                        crossAxisCount: (constraints.maxWidth / 400).ceil(),
+                        itemCount: controller.selectedProducts.length,
+                        mainAxisSpacing: 16,
+                        crossAxisSpacing: 16,
+                        itemBuilder: (context, index) {
+                          return ProductInReviewWidget(
+                            item: controller.selectedProducts[index],
+                            controller: controller,
+                            isSelected: true,
+                            isEdit: false,
+                          );
+                        },
                       );
                     },
                   ),

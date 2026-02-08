@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter/services.dart';
 import 'package:osoul_x_psm/core/localization/01_translation_keys.dart';
 import 'package:osoul_x_psm/core/shared_widgets/base_scaffold.dart';
@@ -140,20 +141,21 @@ class ProductsView extends StatelessWidget {
                                   ),
                                 ),
                               )
-                            : GridView.builder(
-                                padding: const EdgeInsets.only(bottom: 100),
-                                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                                  maxCrossAxisExtent: 350,
-                                  mainAxisExtent: 180,
-                                  crossAxisSpacing: 16,
-                                  mainAxisSpacing: 16,
-                                ),
-                                itemCount: controller.nonSelectedProducts.length,
-                                itemBuilder: (context, index) {
-                                  return ProductItemWidget(
-                                    item: controller.nonSelectedProducts[index],
-                                    controller: controller,
-                                    isSelected: false,
+                            : LayoutBuilder(
+                                builder: (context, constraints) {
+                                  return MasonryGridView.count(
+                                    padding: const EdgeInsets.only(bottom: 100),
+                                    crossAxisCount: (constraints.maxWidth / 350).ceil(),
+                                    mainAxisSpacing: 16,
+                                    crossAxisSpacing: 16,
+                                    itemCount: controller.nonSelectedProducts.length,
+                                    itemBuilder: (context, index) {
+                                      return ProductItemWidget(
+                                        item: controller.nonSelectedProducts[index],
+                                        controller: controller,
+                                        isSelected: false,
+                                      );
+                                    },
                                   );
                                 },
                               ),
